@@ -66,4 +66,8 @@ public class Enfermeiro extends AtendenteHospitalar {
     public void setAtendete(AtendenteHospitalar atendete) {
         this.atendete = atendete;
     }
+
+    public void setContatoTelEmail(ContatoTelEmail contato) {
+        this.contato = contato; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

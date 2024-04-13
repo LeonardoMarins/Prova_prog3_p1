@@ -9,8 +9,6 @@ import com.mycompany.p1.backend.Endereco;
 import com.mycompany.p1.backend.Genero;
 import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
-import com.mycompany.p1.backend.Paciente;
-import com.mycompany.p1.backend.Responsavel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;

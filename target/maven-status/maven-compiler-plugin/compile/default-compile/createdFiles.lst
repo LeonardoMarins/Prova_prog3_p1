@@ -21,6 +21,7 @@ com\mycompany\p1\frontend\Enfermeiros$1.class
 com\mycompany\p1\backend\Medico.class
 com\mycompany\p1\frontend\EditPaciente$1.class
 com\mycompany\p1\P1.class
+com\mycompany\p1\frontend\EditEnfermeiro$2.class
 com\mycompany\p1\frontend\ContatoTelEmails$1.class
 com\mycompany\p1\frontend\Medicos$1.class
 com\mycompany\p1\frontend\Medicos.class

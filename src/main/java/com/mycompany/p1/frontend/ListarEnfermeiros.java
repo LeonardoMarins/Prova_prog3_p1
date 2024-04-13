@@ -57,12 +57,12 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditEnfermeiro().setVisible(true);
+                new EditEnfermeiro(menuB, row).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                //menuB.excluirMedico(row);
+                menuB.excluirEnfermeiro(row);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
