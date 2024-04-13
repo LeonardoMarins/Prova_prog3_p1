@@ -75,6 +75,10 @@ public class MenuBack {
         return this.listaDeMedicos;
     }
     
+    public ArrayList<Enfermeiro> getListaEnfermeiro() {
+        return this.listaDeEnfermeiros;
+    }
+    
     public ArrayList<ContatoTelEmail> getListaContato() {
         return this.contatoList;
     }

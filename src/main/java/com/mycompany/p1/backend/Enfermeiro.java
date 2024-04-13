@@ -9,7 +9,7 @@ package com.mycompany.p1.backend;
  * @author marin
  */
 public class Enfermeiro extends AtendenteHospitalar {
-    protected Long idEnfermeiro;
+    protected static Long idEnfermeiro = 0l;
     protected boolean treinadoOpRX;
     protected AtendenteHospitalar atendete;
     
@@ -21,5 +21,49 @@ public class Enfermeiro extends AtendenteHospitalar {
         this.endereco = pessoal.endereco;
         this.contato = pessoal.contato;
         this.genero = pessoal.genero;
+        idEnfermeiro++;
+    }
+    
+     /**
+     * @return the idEnfermeiro
+     */
+    public Long getIdEnfermeiro() {
+        return idEnfermeiro;
+    }
+
+    /**
+     * @param idEnfermeiro the idEnfermeiro to set
+     */
+    public void setIdEnfermeiro(Long idEnfermeiro) {
+        this.idEnfermeiro = idEnfermeiro;
+    }
+
+    /**
+     * @return the treinadoOpRX
+     */
+    public boolean isTreinadoOpRX() {
+        return treinadoOpRX;
+    }
+
+    /**
+     * @param treinadoOpRX the treinadoOpRX to set
+     */
+    public void setTreinadoOpRX(boolean treinadoOpRX) {
+        this.treinadoOpRX = treinadoOpRX;
+    }
+
+    /**
+     * @return the atendete
+     */
+    public AtendenteHospitalar getAtendete() {
+        return atendete;
+    }
+
+    /**
+     * @param atendete the atendete to set
+     */
+       
+    public void setAtendete(AtendenteHospitalar atendete) {
+        this.atendete = atendete;
     }
 }

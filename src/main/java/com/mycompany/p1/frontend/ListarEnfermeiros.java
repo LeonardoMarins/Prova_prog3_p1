@@ -4,7 +4,7 @@
  */
 package com.mycompany.p1.frontend;
 
-import com.mycompany.p1.backend.Medico;
+import com.mycompany.p1.backend.Enfermeiro;
 import com.mycompany.p1.backend.MenuBack;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,40 +15,38 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author marin
  */
-public class ListarMedicos extends javax.swing.JFrame {
+public class ListarEnfermeiros extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListarMedicos
+     * Creates new form ListarEnfermeiros
      */
-    private ArrayList<Medico> listaMedicos;
+    private ArrayList<Enfermeiro> listaEnfermeiros;
     private MenuBack menuB;
     
-    public ListarMedicos(MenuBack menu, ArrayList<Medico> lista) {
+    public ListarEnfermeiros(MenuBack menu, ArrayList<Enfermeiro> lista) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        this.listaMedicos = lista;
+        this.listaEnfermeiros = lista;
         this.menuB = menu;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int linha = 0; // Inicializa a linha
      
-        for (Medico medico : listaMedicos) {
+        for (Enfermeiro enfermeiro : listaEnfermeiros) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
-            medico.getNomePessoal(),
-            medico.getDataNascimento(),
-            medico.getEndereco().getRua(),
-            medico.getContato().getTelefone(),
-            medico.getGenero().M,
-            medico.getNumeroCRM(),
-            medico.getAreasEspecialidade(),
-            medico.isCirurgiao(),
-            medico.getSetor(),
-            medico.getChSemanal(),
+            enfermeiro.getNomePessoal(),
+            enfermeiro.getDataNascimento(),
+            enfermeiro.getEndereco().getRua(),
+            enfermeiro.getContato().getTelefone(),
+            enfermeiro.getGenero().M,
+            enfermeiro.getSetor(),
+            enfermeiro.getChSemanal(),
+            enfermeiro.isTreinadoOpRX(),
             "Edit", 
             "Delete" 
             
         });
-        linha++; // Incrementa a linha
+        linha++; 
     }
         jTable1.addMouseListener(new MouseAdapter() {
         @Override
@@ -59,12 +57,12 @@ public class ListarMedicos extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditMedico(menuB, row).setVisible(true);
+                new EditEnfermeiro().setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                menuB.excluirMedico(row);
+                //menuB.excluirMedico(row);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
@@ -92,9 +90,9 @@ public class ListarMedicos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "DATA NASCIMENTO", "ENDEREÇO", "CONTATO",
-                "GENERO", "NÚMERO CRM", "AREA ESPECIFICA", "CIRURGIÃO",
-                "SETOR", "CHSEMANAL","EDITAR", "DELETAR"
+                "NOME", "DATA DE NASCIMENTO", "ENDEREÇO", "CONTATO",
+                "GENERO", "SETOR", "CHSEMANAL", "TREINADO_OPRX", "EDIT",
+                "DELETE"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -103,17 +101,11 @@ public class ListarMedicos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,22 +128,22 @@ public class ListarMedicos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarEnfermeiros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarEnfermeiros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarEnfermeiros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarEnfermeiros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        ArrayList<Medico> lista = new ArrayList();
+        ArrayList<Enfermeiro> lista = new ArrayList();
         MenuBack menu = new MenuBack();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarMedicos(menu,lista).setVisible(true);
+                new ListarEnfermeiros(menu,lista).setVisible(true);
             }
         });
     }

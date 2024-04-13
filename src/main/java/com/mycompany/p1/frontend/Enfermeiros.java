@@ -233,7 +233,7 @@ public class Enfermeiros extends javax.swing.JFrame {
 
        Genero opGenero = null;
             
-       if ("masculino".equals(generoSelecionado)) {
+       if ("Masculino".equals(generoSelecionado)) {
             opGenero = Genero.M;
        } else if ("Feminino".equals(generoSelecionado)) {
             opGenero = Genero.F;
@@ -255,16 +255,16 @@ public class Enfermeiros extends javax.swing.JFrame {
             selectedRadio1 = true;
             Enfermeiro enfermeiro = new Enfermeiro(selectedRadio1, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
-            System.out.println(enfermeiro.getNomePessoal());
+            System.out.println(enfermeiro.getGenero());
         } else if (treinadoOPRX2) {
-            selectedRadio2 = true;
+            selectedRadio2 = false;
             Enfermeiro enfermeiro = new Enfermeiro(selectedRadio2, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
-            System.out.println(enfermeiro.getNomePessoal());
+            System.out.println(enfermeiro.getGenero());
         } else {
             Enfermeiro enfermeiro = new Enfermeiro(false, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
-            System.out.println(enfermeiro.getNomePessoal());
+            System.out.println(enfermeiro.getGenero());
         }
        }catch(NumberFormatException | ParseException ex) {
            ex.getMessage();

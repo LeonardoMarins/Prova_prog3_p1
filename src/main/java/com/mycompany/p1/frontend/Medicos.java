@@ -273,7 +273,7 @@ public class Medicos extends javax.swing.JFrame {
 
        Genero opGenero = null;
             
-       if ("masculino".equals(generoSelecionado)) {
+       if ("Masculino".equals(generoSelecionado)) {
             opGenero = Genero.M;
        } else if ("Feminino".equals(generoSelecionado)) {
             opGenero = Genero.F;
