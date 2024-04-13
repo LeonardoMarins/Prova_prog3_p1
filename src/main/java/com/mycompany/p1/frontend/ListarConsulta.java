@@ -21,20 +21,20 @@ public class ListarConsulta extends javax.swing.JFrame {
      * Creates new form ListarConsulta
      */
     private ArrayList<ConsultaMedica> listaConsultas;
-    private MenuBack menu;
+    private MenuBack menuB;
     
     public ListarConsulta(MenuBack menu, ArrayList<ConsultaMedica> lista) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.listaConsultas = lista;
-        this.menu = menu;
+        this.menuB = menu;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int linha = 0; // Inicializa a linha
      
         for (ConsultaMedica consulta : listaConsultas) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
-            consulta.getIdMedico(),
+            consulta.getIdPaciente(),
             consulta.getIdMedico(),
             consulta.getExameQueixa(),
             consulta.getDiagnostico(),
@@ -55,12 +55,12 @@ public class ListarConsulta extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                //new EditPaciente(menu, row).setVisible(true);
+                new EditConsulta(menuB, row).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                //menu.excluirPaciente(row);
+                menuB.excluirConsulta(row);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
@@ -89,7 +89,7 @@ public class ListarConsulta extends javax.swing.JFrame {
             },
             new String [] {
                 "Paciente","Medico","EXAME QUEIXA","DIAGNOSTICO",
-                "PRESCRIÇÃO","INDICAÇÃO CIRURGICA"
+                "PRESCRIÇÃO","INDICAÇÃO CIRURGICA", "EDIT", "DELETE"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -100,8 +100,8 @@ public class ListarConsulta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

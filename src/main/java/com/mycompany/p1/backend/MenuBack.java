@@ -63,6 +63,11 @@ public class MenuBack {
     
     }
     
+    public void atualizarConsulta(ConsultaMedica consulta, int index) {
+    listaDeConsultaMedica.set(index, consulta);
+    
+    }
+    
     public void excluirPaciente(int index) {
     listaDePaciente.remove(index);
     
@@ -75,6 +80,11 @@ public class MenuBack {
     
     public void excluirEnfermeiro(int index) {
     listaDeEnfermeiros.remove(index);
+    
+    }
+    
+    public void excluirConsulta(int index) {
+    listaDeConsultaMedica.remove(index);
     
     }
     

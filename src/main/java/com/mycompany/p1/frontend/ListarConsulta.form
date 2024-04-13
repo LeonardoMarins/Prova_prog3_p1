@@ -25,8 +25,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="716" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,7 +51,7 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Paciente&quot;,&quot;Medico&quot;,&quot;EXAME QUEIXA&quot;,&quot;DIAGNOSTICO&quot;,&#xa;        &quot;PRESCRI&#xc7;&#xc3;O&quot;,&quot;INDICA&#xc7;&#xc3;O CIRURGICA&quot;&#xa;    }&#xa;)" type="code"/>
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Paciente&quot;,&quot;Medico&quot;,&quot;EXAME QUEIXA&quot;,&quot;DIAGNOSTICO&quot;,&#xa;        &quot;PRESCRI&#xc7;&#xc3;O&quot;,&quot;INDICA&#xc7;&#xc3;O CIRURGICA&quot;, &quot;EDIT&quot;, &quot;DELETE&quot;&#xa;    }&#xa;)" type="code"/>
             </Property>
           </Properties>
         </Component>
