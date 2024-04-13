@@ -15,7 +15,8 @@ public class AtendenteHospitalar extends DadoPessoal {
     protected String setor;
     protected int chSemanal;
     
-    public AtendenteHospitalar(String setor, int chSemanal) {
+    public AtendenteHospitalar(String setor, int chSemanal, DadoPessoal pessoal) {
+        super(pessoal.nomePessoal,pessoal.dataNascimento,pessoal.endereco,pessoal.contato,pessoal.genero);
         this.setor = setor;
         this.chSemanal = chSemanal;
         

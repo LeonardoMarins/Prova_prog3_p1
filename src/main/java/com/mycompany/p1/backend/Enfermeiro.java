@@ -13,8 +13,13 @@ public class Enfermeiro extends AtendenteHospitalar {
     protected boolean treinadoOpRX;
     protected AtendenteHospitalar atendete;
     
-    public Enfermeiro(boolean treinadoOpRX, AtendenteHospitalar atendente) {
-        super(atendente.setor, atendente.chSemanal);
+    public Enfermeiro(boolean treinadoOpRX, AtendenteHospitalar atendente, DadoPessoal pessoal) {
+        super(atendente.setor, atendente.chSemanal, pessoal);
         this.treinadoOpRX = treinadoOpRX;
+        this.nomePessoal = pessoal.nomePessoal;
+        this.dataNascimento = pessoal.dataNascimento;
+        this.endereco = pessoal.endereco;
+        this.contato = pessoal.contato;
+        this.genero = pessoal.genero;
     }
 }

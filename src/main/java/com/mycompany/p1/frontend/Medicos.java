@@ -6,11 +6,11 @@ package com.mycompany.p1.frontend;
 
 import com.mycompany.p1.backend.AtendenteHospitalar;
 import com.mycompany.p1.backend.ContatoTelEmail;
+import com.mycompany.p1.backend.DadoPessoal;
 import com.mycompany.p1.backend.Endereco;
 import com.mycompany.p1.backend.Genero;
 import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
-import com.mycompany.p1.backend.Responsavel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -282,25 +282,24 @@ public class Medicos extends javax.swing.JFrame {
        
        int chSemanalI = Integer.parseInt(chsemanal);
        
-       AtendenteHospitalar atendimento = new AtendenteHospitalar(setor, chSemanalI);
+       DadoPessoal dado = new DadoPessoal(nome, dataNascimentoD, enderecoSelecionado, contatoSelecionado, opGenero);
+       
+       AtendenteHospitalar atendimento = new AtendenteHospitalar(setor, chSemanalI,dado);
        
        if (cirurgiaoSelecionado) {
             selectedRadio1 = true;
             
-             Medico medico = new Medico(nome,dataNascimentoD, enderecoSelecionado,
-                     contatoSelecionado, opGenero, numeroCRMI,areaEspecialidade,selectedRadio1,atendimento);
+             Medico medico = new Medico(dado,numeroCRMI,areaEspecialidade,selectedRadio1,atendimento);
              menuB.adicionarMedico(medico);
              System.out.println(medico.getIdMedico());
         } else if (outroRadioButtonSelecionado) {
             selectedRadio2 = true;
             
-            Medico medico = new Medico(nome,dataNascimentoD, enderecoSelecionado,
-                     contatoSelecionado, opGenero, numeroCRMI,areaEspecialidade,selectedRadio2,atendimento);
+            Medico medico = new Medico(dado, numeroCRMI,areaEspecialidade,selectedRadio2,atendimento);
             menuB.adicionarMedico(medico);
             System.out.println(medico.getIdMedico());
         } else {
-            Medico medico = new Medico(nome,dataNascimentoD, enderecoSelecionado,
-                     contatoSelecionado, opGenero, numeroCRMI,areaEspecialidade,false,atendimento);
+            Medico medico = new Medico(dado, numeroCRMI,areaEspecialidade,false,atendimento);
             menuB.adicionarMedico(medico);
             System.out.println(medico.getIdMedico());
         }

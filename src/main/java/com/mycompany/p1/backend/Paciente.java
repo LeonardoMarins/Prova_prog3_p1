@@ -21,14 +21,8 @@ public class Paciente extends DadoPessoal {
     private ConsultaMedica historicoConsultaMedica;
     private Responsavel contatoResponsavel;
     
-    public Paciente(String nome, ContatoTelEmail contato, Genero genero, Date dataDeNascimento,
-            Endereco endereco, int idade, Date dataCadastro, Responsavel responsavel, String obsGeral) {
-         
-        this.nomePessoal = nome;
-        this.dataNascimento = dataDeNascimento;
-        this.endereco = endereco;
-        this.contato = contato;
-        this.genero = genero;
+    public Paciente(DadoPessoal pessoal, int idade, Date dataCadastro, Responsavel responsavel, String obsGeral) {
+        super(pessoal.nomePessoal,pessoal.dataNascimento,pessoal.endereco,pessoal.contato,pessoal.genero);
         this.idade = idade;
         this.dataCadastro = dataCadastro;
         this.contatoResponsavel = responsavel;

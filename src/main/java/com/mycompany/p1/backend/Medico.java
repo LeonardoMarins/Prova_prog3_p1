@@ -18,15 +18,14 @@ public class Medico extends AtendenteHospitalar {
    protected boolean cirurgiao;
    protected AtendenteHospitalar atendente;
    
-   public Medico(String nomePessoal,Date dataNascimento, Endereco endereco, 
-           ContatoTelEmail contato, Genero genero, int numeroCRM, 
+   public Medico(DadoPessoal pessoal, int numeroCRM, 
            String areaEspciealidade, boolean cirurgiao, AtendenteHospitalar atendente) {
-       super(atendente.setor, atendente.chSemanal);
-       this.nomePessoal = nomePessoal;
-       this.dataNascimento = dataNascimento;
-       this.endereco = endereco;
-       this.contato = contato;
-       this.genero = genero;
+       super(atendente.setor, atendente.chSemanal, pessoal);
+       this.nomePessoal = pessoal.nomePessoal;
+       this.dataNascimento = pessoal.dataNascimento;
+       this.endereco = pessoal.endereco;
+       this.contato = pessoal.contato;
+       this.genero = pessoal.genero;
        this.numeroCRM = numeroCRM;
        this.areasEspecialidade = areaEspciealidade;
        this.cirurgiao = cirurgiao;

@@ -17,6 +17,7 @@ public class MenuBack {
     public ArrayList<Responsavel> responsavelList = new ArrayList<>();
     public ArrayList<Paciente> listaDePaciente = new ArrayList<>();
     public ArrayList<Medico> listaDeMedicos = new ArrayList<>();
+    public ArrayList<Enfermeiro> listaDeEnfermeiros = new ArrayList<>();
      
     public void adicionarEndereco(Endereco endereco) {
     listaEndereco.add(endereco);
@@ -36,6 +37,10 @@ public class MenuBack {
     
     public void adicionarMedico(Medico medico) {
     listaDeMedicos.add(medico);
+    }
+    
+    public void adicionarEnfermeiro(Enfermeiro enfermeiro) {
+    listaDeEnfermeiros.add(enfermeiro);
     }
     
     public void atualizarPaciente(Paciente paciente, int index) {

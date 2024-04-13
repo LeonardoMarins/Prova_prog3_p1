@@ -5,6 +5,7 @@
 package com.mycompany.p1.frontend;
 
 import com.mycompany.p1.backend.ContatoTelEmail;
+import com.mycompany.p1.backend.DadoPessoal;
 import com.mycompany.p1.backend.Endereco;
 import com.mycompany.p1.backend.Genero;
 import com.mycompany.p1.backend.MenuBack;
@@ -274,8 +275,10 @@ public class Pacientes extends javax.swing.JFrame {
             int opcaoContatoResponsavel = jComboBox5.getSelectedIndex();
             Responsavel ResponsavelSelecionado = menuB.getListaResponsavel().get(opcaoContatoResponsavel);
             
-            Paciente paciente = new Paciente(nomeCompleto, contatoSelecionado, opGenero,
-                    dataNascimentoD, enderecoSelecionado, idadeI,
+            DadoPessoal dado = new DadoPessoal(nomeCompleto,dataNascimentoD,enderecoSelecionado,
+            contatoSelecionado, opGenero);
+            
+            Paciente paciente = new Paciente(dado, idadeI,
                     dataCadastroD, ResponsavelSelecionado, obsGeral);
             menuB.adicionarPaciente(paciente);
             

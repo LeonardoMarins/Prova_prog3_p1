@@ -18,6 +18,15 @@ public class DadoPessoal {
     protected Endereco endereco;
     protected ContatoTelEmail contato;
     protected Genero genero;
+    
+    public DadoPessoal(String nome, Date dataNascimento, Endereco end, ContatoTelEmail contato,
+            Genero genero) {
+        this.nomePessoal = nome;
+        this.dataNascimento = dataNascimento;
+        this.endereco = end;
+        this.contato = contato;
+        this.genero = genero;
+    }
 
     /**
      * @return the nomePessoal
