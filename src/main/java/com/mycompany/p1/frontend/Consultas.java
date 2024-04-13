@@ -199,18 +199,18 @@ public class Consultas extends javax.swing.JFrame {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, selectedRadio1);
             menuB.adicionarConsultaMedica(consulta);
-             System.out.println(consulta.getIdMedico());
+             System.out.println(consulta.getIdConsulta());
         } else if (indicacao2) {
             selectedRadio2 = false;
              ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, selectedRadio2);
              menuB.adicionarConsultaMedica(consulta);
-             System.out.println(consulta.getIdMedico());
+             System.out.println(consulta.getIdConsulta());
         } else {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, false);
             menuB.adicionarConsultaMedica(consulta);
-             System.out.println(consulta.getIdMedico());
+             System.out.println(consulta.getIdConsulta());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

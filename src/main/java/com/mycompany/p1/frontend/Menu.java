@@ -134,6 +134,11 @@ public final class Menu extends javax.swing.JFrame {
         });
 
         jButton12.setText("LISTAR CONSULTA");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("CADASTRAR ENFERMEIRO");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +265,7 @@ public final class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       new ListarPacientes(menu.getListaPaciente(), menu).setVisible(true);
+       new ListarPacientes(menu, menu.getListaPaciente()).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -282,6 +287,10 @@ public final class Menu extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         new Consultas(menu).setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        new ListarConsulta(menu, menu.getListaConsultaMedicas()).setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -94,6 +94,10 @@ public class MenuBack {
         return this.listaDeEnfermeiros;
     }
     
+    public ArrayList<ConsultaMedica> getListaConsultaMedicas() {
+        return this.listaDeConsultaMedica;
+    }
+    
     public ArrayList<ContatoTelEmail> getListaContato() {
         return this.contatoList;
     }

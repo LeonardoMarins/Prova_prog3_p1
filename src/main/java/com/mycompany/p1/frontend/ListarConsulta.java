@@ -4,8 +4,8 @@
  */
 package com.mycompany.p1.frontend;
 
+import com.mycompany.p1.backend.ConsultaMedica;
 import com.mycompany.p1.backend.MenuBack;
-import com.mycompany.p1.backend.Paciente;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -15,34 +15,31 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author marin
  */
-public class ListarPacientes extends javax.swing.JFrame {
+public class ListarConsulta extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListarPacientes
+     * Creates new form ListarConsulta
      */
-    private ArrayList<Paciente> listaPacientes;
+    private ArrayList<ConsultaMedica> listaConsultas;
     private MenuBack menu;
     
-    public ListarPacientes(MenuBack menu, ArrayList<Paciente> lista) {
+    public ListarConsulta(MenuBack menu, ArrayList<ConsultaMedica> lista) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        this.listaPacientes = lista;
+        this.listaConsultas = lista;
         this.menu = menu;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int linha = 0; // Inicializa a linha
      
-        for (Paciente paciente : listaPacientes) {
+        for (ConsultaMedica consulta : listaConsultas) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
-            paciente.getNomePessoal(),
-            paciente.getContato().getTelefone(),
-            paciente.getContatoResponsavel().getNomeResponsavel(),
-            paciente.getDataCadastro(),
-            paciente.getDataNascimento(),
-            paciente.getEndereco().getRua(),
-            paciente.getGenero().M,
-            paciente.getIdade(),
-            paciente.getObsGeral(),
+            consulta.getIdMedico(),
+            consulta.getIdMedico(),
+            consulta.getExameQueixa(),
+            consulta.getDiagnostico(),
+            consulta.getPrescricao(),
+            consulta.isIndicacaoCirurgica(),
             "Edit", 
             "Delete" 
             
@@ -58,19 +55,18 @@ public class ListarPacientes extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditPaciente(menu, row).setVisible(true);
+                //new EditPaciente(menu, row).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                menu.excluirPaciente(row);
+                //menu.excluirPaciente(row);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
         }
     }
 });
-
     }
 
     /**
@@ -92,7 +88,8 @@ public class ListarPacientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "CONTATO", "CONTATO RESPONSAVEL", "DATA CADASTRO", "DATA NASCIMENTO", "ENDEREÇO", "GENERO", "IDADE", "OBS GERAL", "EDIT", "DELETE"
+                "Paciente","Medico","EXAME QUEIXA","DIAGNOSTICO",
+                "PRESCRIÇÃO","INDICAÇÃO CIRURGICA"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -103,15 +100,15 @@ public class ListarPacientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,22 +131,22 @@ public class ListarPacientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        ArrayList<Paciente> lista = new ArrayList();
         MenuBack menu = new MenuBack();
+        ArrayList<ConsultaMedica> lista = new ArrayList();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarPacientes(menu, lista).setVisible(true);
+                new ListarConsulta(menu, lista).setVisible(true);
             }
         });
     }

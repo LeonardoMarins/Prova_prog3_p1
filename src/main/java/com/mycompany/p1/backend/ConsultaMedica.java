@@ -30,14 +30,14 @@ public class ConsultaMedica {
     /**
      * @return the idConsulta
      */
-    public static Long getIdConsulta() {
+    public Long getIdConsulta() {
         return idConsulta;
     }
 
     /**
      * @param aIdConsulta the idConsulta to set
      */
-    public static void setIdConsulta(Long aIdConsulta) {
+    public void setIdConsulta(Long aIdConsulta) {
         idConsulta = aIdConsulta;
     }
 
