@@ -253,7 +253,7 @@ public class EditPaciente extends javax.swing.JFrame {
             SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
             
             SimpleDateFormat formatoDataCadastro = new SimpleDateFormat("dd/MM/yyyy");
-            
+
             
             Paciente pacienteParaEditar = menuB.listaDePaciente.get(rows); // Obtendo o paciente a ser editado
             

@@ -12,7 +12,8 @@ import java.util.Date;
  * @author marin
  */
 public class Paciente extends DadoPessoal {
-    private static Long idPaciente = 0l;
+    private static Long proximoIdPaciente = 0L;
+    private Long idPaciente; 
     private int idade;
     private String dataCadastro; 
     private String obsGeral;
@@ -25,21 +26,21 @@ public class Paciente extends DadoPessoal {
         this.dataCadastro = dataCadastro;
         this.contatoResponsavel = responsavel;
         this.obsGeral = obsGeral;
-        Paciente.idPaciente++;
+        this.idPaciente = proximoIdPaciente++;
     }
 
     /**
      * @return the idPaciente
      */
     public Long getIdPaciente() {
-        return Paciente.idPaciente;
+         return idPaciente;
     }
 
     /**
      * @param idPaciente the idPaciente to set
      */
-    public void setIdPaciente(Long idPaciente) {
-        Paciente.idPaciente = idPaciente;
+    public void setIdPaciente(Long idPacientes) {
+        idPaciente = idPacientes;
     }
 
     /**

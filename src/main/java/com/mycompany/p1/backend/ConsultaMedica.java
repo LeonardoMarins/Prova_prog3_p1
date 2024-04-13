@@ -11,7 +11,7 @@ package com.mycompany.p1.backend;
 public class ConsultaMedica {
     protected static Long idConsulta = 0l;
     protected Long idPaciente; 
-    protected Long idMedico; 
+    protected Long idMedico;
     protected String exameQueixa;
     protected String diagnostico;
     protected String prescricao;

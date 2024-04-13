@@ -10,6 +10,7 @@ com\mycompany\p1\frontend\EditMedico$4.class
 com\mycompany\p1\frontend\Menu$1.class
 com\mycompany\p1\frontend\Menu$5.class
 com\mycompany\p1\frontend\ListarResponsaveis$1.class
+com\mycompany\p1\frontend\ListarPacientes$3.class
 com\mycompany\p1\frontend\Consultas$2.class
 com\mycompany\p1\frontend\EditEnfermeiro.class
 com\mycompany\p1\frontend\Menu$14.class
@@ -37,6 +38,7 @@ com\mycompany\p1\frontend\Pacientes.class
 com\mycompany\p1\frontend\Menu$4.class
 com\mycompany\p1\frontend\ListarContatoTelEmail.class
 com\mycompany\p1\frontend\ListarEnfermeiros$2.class
+com\mycompany\p1\frontend\ListarMedicos$3.class
 com\mycompany\p1\frontend\Menu$7.class
 com\mycompany\p1\frontend\Pacientes$2.class
 com\mycompany\p1\frontend\EditMedico$2.class
@@ -74,6 +76,7 @@ com\mycompany\p1\backend\Endereco.class
 com\mycompany\p1\frontend\EditMedico$1.class
 com\mycompany\p1\frontend\Medicos$2.class
 com\mycompany\p1\frontend\Responsaveis$2.class
+com\mycompany\p1\frontend\ListarMedicos$4.class
 com\mycompany\p1\frontend\Menu$9.class
 com\mycompany\p1\frontend\ListarMedicos.class
 com\mycompany\p1\frontend\EditPaciente$3.class
