@@ -24,7 +24,7 @@ public class ListarEndereco extends javax.swing.JFrame {
         this.listaEndereco = lista;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     
-    int linha = 0; // Inicializa a linha
+    int linha = 0; 
     for (Endereco endereco : listaEndereco) {
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
             endereco.getRua(),

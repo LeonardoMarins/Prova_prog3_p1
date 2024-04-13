@@ -263,7 +263,7 @@ public class EditPaciente extends javax.swing.JFrame {
             pacienteParaEditar.setContatoTelEmail(menuB.contatoList.get(jComboBox2.getSelectedIndex()));
             pacienteParaEditar.setGenero(Genero.M);
             pacienteParaEditar.setIdade(Integer.parseInt(jTextField3.getText()));
-            pacienteParaEditar.setDataCadastro(formatoDataCadastro.parse(jTextField4.getText()));
+            pacienteParaEditar.setDataCadastro(jTextField4.getText());
             pacienteParaEditar.setObsGeral(jTextArea1.getText());
             pacienteParaEditar.setContatoResponsavel(menuB.responsavelList.get(jComboBox5.getSelectedIndex()));
             

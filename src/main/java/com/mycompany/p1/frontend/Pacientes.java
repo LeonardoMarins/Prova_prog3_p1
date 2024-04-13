@@ -27,11 +27,15 @@ public class Pacientes extends javax.swing.JFrame {
      * Creates new form Paciente
      */
     private MenuBack menuB;
+    Date dataAtual = new Date();
+    String dataCadastro = dataAtual.toGMTString();
     
     public Pacientes(MenuBack menu) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
+        jTextField4.setText(dataCadastro);
+        
         for(ContatoTelEmail contato: menuB.contatoList) {
             jComboBox2.addItem(contato.getTelefone());
             jComboBox2.repaint();
@@ -245,11 +249,6 @@ public class Pacientes extends javax.swing.JFrame {
             SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
             String dataNascimento = jTextField2.getText();
             Date dataNascimentoD = formatoData.parse(dataNascimento);
-
-            
-            SimpleDateFormat formatoDataCadastro = new SimpleDateFormat("dd/MM/yyyy");
-            String dataCadastro = jTextField4.getText();
-            Date dataCadastroD = formatoDataCadastro.parse(dataCadastro);
             
             
             int opcaoEndereco = jComboBox1.getSelectedIndex();
@@ -279,7 +278,7 @@ public class Pacientes extends javax.swing.JFrame {
             contatoSelecionado, opGenero);
             
             Paciente paciente = new Paciente(dado, idadeI,
-                    dataCadastroD, ResponsavelSelecionado, obsGeral);
+                    dataCadastro, ResponsavelSelecionado, obsGeral);
             menuB.adicionarPaciente(paciente);
             
 

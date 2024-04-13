@@ -10,7 +10,6 @@ import com.mycompany.p1.backend.DadoPessoal;
 import com.mycompany.p1.backend.Endereco;
 import com.mycompany.p1.backend.Genero;
 import com.mycompany.p1.backend.Enfermeiro;
-import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

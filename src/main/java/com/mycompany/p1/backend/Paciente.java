@@ -5,8 +5,6 @@
 package com.mycompany.p1.backend;
 
 import com.mycompany.p1.backend.Responsavel;
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,12 +14,12 @@ import java.util.Date;
 public class Paciente extends DadoPessoal {
     private static Long idPaciente = 0l;
     private int idade;
-    private Date dataCadastro = new Date(); 
+    private String dataCadastro; 
     private String obsGeral;
     private ConsultaMedica historicoConsultaMedica;
     private Responsavel contatoResponsavel;
     
-    public Paciente(DadoPessoal pessoal, int idade, Date dataCadastro, Responsavel responsavel, String obsGeral) {
+    public Paciente(DadoPessoal pessoal, int idade, String dataCadastro, Responsavel responsavel, String obsGeral) {
         super(pessoal.nomePessoal,pessoal.dataNascimento,pessoal.endereco,pessoal.contato,pessoal.genero);
         this.idade = idade;
         this.dataCadastro = dataCadastro;
@@ -61,14 +59,14 @@ public class Paciente extends DadoPessoal {
     /**
      * @return the dataCadastro
      */
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
     /**
      * @param dataCadastro the dataCadastro to set
      */
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

@@ -127,6 +127,11 @@ public final class Menu extends javax.swing.JFrame {
         });
 
         jButton11.setText("CADASTRAR CONSULTA");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("LISTAR CONSULTA");
 
@@ -273,6 +278,10 @@ public final class Menu extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         new ListarEnfermeiros(menu, menu.getListaEnfermeiro()).setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        new Consultas(menu).setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
