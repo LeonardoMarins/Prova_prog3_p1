@@ -55,7 +55,11 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
             int row = e.getY() / jTable1.getRowHeight();
 
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
-            Object value = jTable1.getValueAt(row, column);
+            if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
+                Object idValue = jTable1.getValueAt(row, 0);
+                int id = Integer.parseInt(String.valueOf(idValue));
+                System.out.println("ID do paciente na linha " + row + ": " + id);
+                Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
                 new EditEnfermeiro(menuB, row).setVisible(true);
                 setVisible(false);
@@ -68,7 +72,7 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
             }
         }
     }
-});
+}});
     }
 
     /**

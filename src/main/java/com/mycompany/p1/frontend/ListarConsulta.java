@@ -55,9 +55,14 @@ public class ListarConsulta extends javax.swing.JFrame {
             int row = e.getY() / jTable1.getRowHeight();
 
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
+            if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
+                Object idValue = jTable1.getValueAt(row, 0);
+                int id = Integer.parseInt(String.valueOf(idValue));
+                System.out.println("ID do paciente na linha " + row + ": " + id);
+                
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditConsulta(menuB, row).setVisible(true);
+                new EditConsulta(menuB, id).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
@@ -68,7 +73,7 @@ public class ListarConsulta extends javax.swing.JFrame {
             }
         }
     }
-});
+}});
        botaoPesquisar.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
