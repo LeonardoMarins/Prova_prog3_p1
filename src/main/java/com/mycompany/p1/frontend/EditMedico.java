@@ -38,7 +38,7 @@ public class EditMedico extends javax.swing.JFrame {
         jComboBox3.repaint();
                
         for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox2.addItem(contato.getTelefone());
+            jComboBox2.addItem(String.valueOf(contato.getTelefone()));
             jComboBox2.repaint();
         }
         for(Endereco endereco: menuB.listaEndereco) {

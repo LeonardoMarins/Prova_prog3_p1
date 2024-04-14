@@ -39,7 +39,7 @@ public class EditPaciente extends javax.swing.JFrame {
         jTextField2.setText(dataNascimentoStr);
         
         for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox2.addItem(contato.getTelefone());
+            jComboBox2.addItem(String.valueOf(contato.getTelefone()));
             jComboBox2.repaint();
         }
         for(Responsavel responsavel: menuB.responsavelList) {

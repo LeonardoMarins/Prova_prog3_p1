@@ -120,11 +120,13 @@ public class ContatoTelEmails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String telefone = jTextField1.getText();
+        int telefoneS = Integer.parseInt(telefone);
         String celular = jTextField2.getText();
+        int celularS = Integer.parseInt(celular);
         String email = jTextField3.getText();
 
         
-         ContatoTelEmail contato = new ContatoTelEmail(telefone,celular,email);
+         ContatoTelEmail contato = new ContatoTelEmail(telefoneS,celularS,email);
     
          // Adiciona o endereço à lista de endereços na tela Menu
          menu.adicionarContato(contato);

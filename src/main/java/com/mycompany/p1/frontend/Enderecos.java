@@ -6,6 +6,7 @@ package com.mycompany.p1.frontend;
 
 import com.mycompany.p1.backend.Endereco;
 import com.mycompany.p1.backend.MenuBack;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -149,6 +150,7 @@ public class Enderecos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try {
         String rua = jTextField1.getText();
         String numero = jTextField2.getText();
         int numeroI = Integer.parseInt(numero);
@@ -162,7 +164,15 @@ public class Enderecos extends javax.swing.JFrame {
     
          // Adiciona o endereço à lista de endereços na tela Menu
          menu.adicionarEndereco(endereco);
-         
+         JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+         this.dispose();
+     }catch(NumberFormatException exs) {
+         JOptionPane.showMessageDialog(rootPane, "o campo de cep e número não podem ser vazios");
+     }catch(IllegalArgumentException exs) {
+         JOptionPane.showMessageDialog(rootPane, "o campo de Rua não pode ser vazio");
+     }catch(Exception exs) {
+         exs.getMessage();
+     }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -31,7 +31,7 @@ public class Medicos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
         for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox2.addItem(contato.getTelefone());
+            jComboBox2.addItem(String.valueOf(contato.getTelefone()));
             jComboBox2.repaint();
         }
         jComboBox3.addItem("Masculino");

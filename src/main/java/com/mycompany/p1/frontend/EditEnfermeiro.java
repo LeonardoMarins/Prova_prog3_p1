@@ -36,11 +36,11 @@ public class EditEnfermeiro extends javax.swing.JFrame {
         jComboBox3.addItem("Feminino");
         jComboBox3.repaint();
                
-        for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox2.addItem(contato.getTelefone());
+        for(var contato: menuB.contatoList) {
+            jComboBox2.addItem(String.valueOf(contato.getTelefone()));
             jComboBox2.repaint();
         }
-        for(Endereco endereco: menuB.listaEndereco) {
+        for(var endereco: menuB.listaEndereco) {
             jComboBox1.addItem(endereco.getRua());
             jComboBox1.repaint();
         }

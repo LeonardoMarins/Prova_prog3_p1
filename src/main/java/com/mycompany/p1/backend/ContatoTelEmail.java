@@ -10,21 +10,21 @@ package com.mycompany.p1.backend;
  */
 public class ContatoTelEmail {
     
-    protected String telefone;
-    protected String celular;
+    protected int telefone;
+    protected int celular;
     protected String email;
     
-    public ContatoTelEmail(String telefone, String celular, String email) {
+    public ContatoTelEmail(int telefone, int celular, String email) {
         this.telefone = telefone;
         this.celular = celular;
         this.email = email;
     }
     
-    public String getTelefone() {
+    public int getTelefone() {
         return this.telefone;
     }
     
-    public String getCelular() {
+    public int getCelular() {
         return this.celular;
     }
     
@@ -32,11 +32,11 @@ public class ContatoTelEmail {
         return this.email;
     }
     
-    public void setTelefone(String telefone) {
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
 
-    public void setCelular(String celular) {
+    public void setCelular(int celular) {
         this.celular = celular;
     }
 

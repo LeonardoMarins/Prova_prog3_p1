@@ -25,7 +25,7 @@ public class Responsaveis extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
         for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox1.addItem(contato.getTelefone());
+            jComboBox1.addItem(String.valueOf(contato.getTelefone()));
             jComboBox1.repaint();
         }
     }

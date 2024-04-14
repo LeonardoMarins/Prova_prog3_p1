@@ -38,7 +38,7 @@ public class Pacientes extends javax.swing.JFrame {
         jTextField4.setText(dataCadastro);
         
         for(ContatoTelEmail contato: menuB.contatoList) {
-            jComboBox2.addItem(contato.getTelefone());
+            jComboBox2.addItem(String.valueOf(contato.getTelefone()));
             jComboBox2.repaint();
         }
         for(Responsavel responsavel: menuB.responsavelList) {

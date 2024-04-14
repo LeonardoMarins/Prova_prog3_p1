@@ -26,6 +26,10 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
+        
+        if (rua == null || rua.isEmpty()) {
+            throw new IllegalArgumentException("A rua não pode estar vazio");
+        }
     }
     
      public String getRua() {
