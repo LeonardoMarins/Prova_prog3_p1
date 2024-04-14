@@ -11,7 +11,7 @@ import java.util.UUID;
  * @author marin
  */
 public class ConsultaMedica {
-    protected static Long idConsulta = 0l;
+    protected UUID idConsulta;
     protected UUID idPaciente; 
     protected UUID idMedico;
     protected String exameQueixa;
@@ -27,7 +27,7 @@ public class ConsultaMedica {
         this.diagnostico = diagnostico;
         this.prescricao = prescricao;
         this.indicacaoCirurgica = indicacaoCirurgica;
-        idConsulta++;
+        this.idConsulta = UUID.randomUUID();
         
         if (exame == null || exame.isEmpty()) {
             throw new IllegalArgumentException("A queixa do paciente não pode ficar vazia");
@@ -36,14 +36,14 @@ public class ConsultaMedica {
     /**
      * @return the idConsulta
      */
-    public Long getIdConsulta() {
+    public UUID getIdConsulta() {
         return idConsulta;
     }
 
     /**
      * @param aIdConsulta the idConsulta to set
      */
-    public void setIdConsulta(Long aIdConsulta) {
+    public void setIdConsulta(UUID aIdConsulta) {
         idConsulta = aIdConsulta;
     }
 

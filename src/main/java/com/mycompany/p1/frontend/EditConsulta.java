@@ -8,6 +8,9 @@ import com.mycompany.p1.backend.ConsultaMedica;
 import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
 import com.mycompany.p1.backend.Paciente;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -19,13 +22,28 @@ public class EditConsulta extends javax.swing.JFrame {
      * Creates new form EditConsulta
      */
     private MenuBack menuB;
-    private int rows;
+    int rows;
+    private UUID idConsulta;
+    Date dataAtual = new Date();
+    String dataCadastro = dataAtual.toGMTString();
     
-    public EditConsulta(MenuBack menu, int row) {
+    public EditConsulta(MenuBack menu,  UUID idConsulta) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
-        this.rows = row;
+        this.idConsulta = idConsulta;
+        
+        for (int i = 0; i < menuB.listaDeConsultaMedica.size(); i++) {
+            if (menuB.listaDeConsultaMedica.get(i).getIdConsulta().equals(idConsulta)) {
+                this.rows = i;
+                break;
+            }
+        }
+        
+        jTextField1.setText(menuB.listaDeConsultaMedica.get(rows).getExameQueixa());
+        jTextField2.setText(menuB.listaDeConsultaMedica.get(rows).getDiagnostico());
+        jTextField3.setText(menuB.listaDeConsultaMedica.get(rows).getPrescricao());
+        jRadioButton1.isSelected();
                
         for(Paciente paciente: menuB.listaDePaciente) {
             jComboBox2.addItem(paciente.getNomePessoal());
@@ -201,18 +219,18 @@ public class EditConsulta extends javax.swing.JFrame {
             selectedRadio1 = true;
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, selectedRadio1);
-            menuB.atualizarConsulta(consulta,rows);
+            menuB.atualizarConsulta(consulta,idConsulta);
             System.out.println(consulta.getIdConsulta());
         } else if (indicacao2) {
             selectedRadio2 = false;
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, selectedRadio2);
-            menuB.atualizarConsulta(consulta,rows);
+            menuB.atualizarConsulta(consulta,idConsulta);
             System.out.println(consulta.getIdConsulta());
         } else {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, false);
-            menuB.atualizarConsulta(consulta,rows);
+            menuB.atualizarConsulta(consulta,idConsulta);
             System.out.println(consulta.getIdConsulta());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -244,12 +262,12 @@ public class EditConsulta extends javax.swing.JFrame {
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
-        int row = 0;
+        UUID idConsulta = UUID.randomUUID();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditConsulta(menu,row).setVisible(true);
+                new EditConsulta(menu,idConsulta).setVisible(true);
             }
         });
     }

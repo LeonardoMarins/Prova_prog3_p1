@@ -77,8 +77,15 @@ public class MenuBack {
     
     }
     
-    public void atualizarConsulta(ConsultaMedica consulta, int index) {
-    listaDeConsultaMedica.set(index, consulta);
+    public void atualizarConsulta(ConsultaMedica consultaParaAtualizar, UUID idConsulta) {
+        // Encontra o paciente com base no UUID fornecido e atualiza seus dados
+        for (int i = 0; i < listaDeConsultaMedica.size(); i++) {
+            ConsultaMedica consulta = listaDeConsultaMedica.get(i);
+            if (consulta.getIdConsulta().equals(idConsulta)) {
+                listaDeConsultaMedica.set(i, consultaParaAtualizar);
+                break;
+            }
+        }
     
     }
     
@@ -116,8 +123,18 @@ public class MenuBack {
     
     }
     
-    public void excluirConsulta(int index) {
-    listaDeConsultaMedica.remove(index);
+    public void excluirConsulta(UUID idConsulta) {
+       // Encontra o paciente com base no UUID fornecido e o remove da lista
+        ConsultaMedica ConsultaParaExcluir = null;
+        for (ConsultaMedica consulta : listaDeConsultaMedica) {
+            if (consulta.getIdConsulta().equals(idConsulta)) {
+                ConsultaParaExcluir = consulta;
+                break;
+            }
+        }
+        if (ConsultaParaExcluir != null) {
+            listaDeConsultaMedica.remove(ConsultaParaExcluir);
+        } 
     
     }
     

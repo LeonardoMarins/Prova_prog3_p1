@@ -362,12 +362,12 @@ public class EditMedico extends javax.swing.JFrame {
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
-        UUID idPaciente = UUID.randomUUID();
+        UUID idMedico = UUID.randomUUID();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditMedico(menu,idPaciente).setVisible(true);
+                new EditMedico(menu,idMedico).setVisible(true);
             }
         });
     }

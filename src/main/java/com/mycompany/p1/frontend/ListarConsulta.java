@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,6 +37,7 @@ public class ListarConsulta extends javax.swing.JFrame {
         for (ConsultaMedica consulta : listaConsultas) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
+            consulta.getIdConsulta(),
             consulta.getIdPaciente(),
             consulta.getIdMedico(),
             consulta.getExameQueixa(),
@@ -57,7 +59,7 @@ public class ListarConsulta extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
                 Object idValue = jTable1.getValueAt(row, 0);
-                int id = Integer.parseInt(String.valueOf(idValue));
+                UUID id = (UUID) idValue; // Convertendo para UUID
                 System.out.println("ID do paciente na linha " + row + ": " + id);
                 
             Object value = jTable1.getValueAt(row, column);
@@ -67,7 +69,7 @@ public class ListarConsulta extends javax.swing.JFrame {
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                menuB.excluirConsulta(row);
+                menuB.excluirConsulta(id);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
@@ -120,7 +122,7 @@ public class ListarConsulta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Paciente","Medico","EXAME QUEIXA","DIAGNOSTICO",
+                "ID","Paciente","Medico","EXAME QUEIXA","DIAGNOSTICO",
                 "PRESCRIÇÃO","INDICAÇÃO CIRURGICA", "EDIT", "DELETE"
             }
         ));
