@@ -9,7 +9,8 @@ package com.mycompany.p1.backend;
  * @author marin
  */
 public class Enfermeiro extends AtendenteHospitalar {
-    protected static Long idEnfermeiro = 0l;
+    protected static Long proximoIdEnfermeiro = 0l;
+    private Long idEnfermeiro;
     protected boolean treinadoOpRX;
     protected AtendenteHospitalar atendete;
     
@@ -21,7 +22,7 @@ public class Enfermeiro extends AtendenteHospitalar {
         this.endereco = pessoal.endereco;
         this.contato = pessoal.contato;
         this.genero = pessoal.genero;
-        idEnfermeiro++;
+        this.idEnfermeiro = proximoIdEnfermeiro++;
     }
     
      /**

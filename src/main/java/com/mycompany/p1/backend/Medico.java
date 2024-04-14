@@ -12,7 +12,8 @@ import java.util.Date;
  */
 public class Medico extends AtendenteHospitalar {
 
-   protected static Long idMedico = 0l;
+   protected static Long proximoIdMedico = 0l;
+   private Long idMedico;
    protected int numeroCRM;
    protected String areasEspecialidade;
    protected boolean cirurgiao;
@@ -29,7 +30,7 @@ public class Medico extends AtendenteHospitalar {
        this.numeroCRM = numeroCRM;
        this.areasEspecialidade = areaEspciealidade;
        this.cirurgiao = cirurgiao;
-       idMedico++;
+       this.idMedico = proximoIdMedico++;
    }
    
    /**

@@ -34,6 +34,7 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
         for (Enfermeiro enfermeiro : listaEnfermeiros) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
+            enfermeiro.getIdEnfermeiro(),
             enfermeiro.getNomePessoal(),
             enfermeiro.getDataNascimento(),
             enfermeiro.getEndereco().getRua(),
@@ -59,9 +60,10 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
                 Object idValue = jTable1.getValueAt(row, 0);
                 int id = Integer.parseInt(String.valueOf(idValue));
                 System.out.println("ID do paciente na linha " + row + ": " + id);
+                
                 Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditEnfermeiro(menuB, row).setVisible(true);
+                new EditEnfermeiro(menuB, id).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
@@ -94,7 +96,7 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "DATA DE NASCIMENTO", "ENDEREÇO", "CONTATO",
+                "ID", "NOME", "DATA DE NASCIMENTO", "ENDEREÇO", "CONTATO",
                 "GENERO", "SETOR", "CHSEMANAL", "TREINADO_OPRX", "EDIT",
                 "DELETE"
             }

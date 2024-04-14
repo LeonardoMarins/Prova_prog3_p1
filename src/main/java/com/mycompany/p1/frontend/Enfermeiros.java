@@ -14,6 +14,7 @@ import com.mycompany.p1.backend.MenuBack;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -212,7 +213,7 @@ public class Enfermeiros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+      try {
        
        String setor = jTextField3.getText();
        String chsemanal = jTextField4.getText();
@@ -254,21 +255,36 @@ public class Enfermeiros extends javax.swing.JFrame {
             selectedRadio1 = true;
             Enfermeiro enfermeiro = new Enfermeiro(selectedRadio1, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(enfermeiro.getGenero());
         } else if (treinadoOPRX2) {
             selectedRadio2 = false;
             Enfermeiro enfermeiro = new Enfermeiro(selectedRadio2, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(enfermeiro.getGenero());
         } else {
             Enfermeiro enfermeiro = new Enfermeiro(false, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(enfermeiro.getGenero());
         }
-       }catch(NumberFormatException | ParseException ex) {
-           ex.getMessage();
-       }catch(Exception exs) {
+       }catch(ParseException ex) {
+           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+       }catch(NumberFormatException exs) {
+           JOptionPane.showMessageDialog(rootPane, "o chSemanal não podem ser vazios"
+                   + " para o cadastro do enfermeiro");
            exs.getMessage();
+       }catch(IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(rootPane, "o contatoTelEmail, endereço e responsavel devem ser cadastrado antes "
+                    + " em cadastros basicos para conseguir cadastrar um paciente");
+       }catch(IllegalArgumentException ex) {
+           JOptionPane.showMessageDialog(rootPane, "o nome do enfermeiro não pode ser vazio");
+       }catch(Exception ex) {
+           ex.getMessage();
        }
 
     }//GEN-LAST:event_jButton1ActionPerformed

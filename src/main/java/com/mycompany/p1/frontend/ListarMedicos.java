@@ -36,6 +36,7 @@ public class ListarMedicos extends javax.swing.JFrame {
         for (Medico medico : listaMedicos) {
      
         model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
+            medico.getIdMedico(),
             medico.getNomePessoal(),
             medico.getDataNascimento(),
             medico.getEndereco().getRua(),
@@ -66,7 +67,7 @@ public class ListarMedicos extends javax.swing.JFrame {
                 
             Object value = jTable1.getValueAt(row, column);
             if (value instanceof String && ((String) value).equals("Edit")) {
-                new EditMedico(menuB, row).setVisible(true);
+                new EditMedico(menuB, id).setVisible(true);
                 setVisible(false);
                 
                 System.out.println("Editar paciente na linha: " + row);
@@ -144,7 +145,7 @@ public class ListarMedicos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "DATA NASCIMENTO", "ENDEREÇO", "CONTATO",
+                "ID", "NOME", "DATA NASCIMENTO", "ENDEREÇO", "CONTATO",
                 "GENERO", "NÚMERO CRM", "AREA ESPECIFICA", "CIRURGIÃO",
                 "SETOR", "CHSEMANAL","EDITAR", "DELETAR"
             }
