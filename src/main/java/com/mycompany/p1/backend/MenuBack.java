@@ -72,8 +72,15 @@ public class MenuBack {
     
     }
     
-    public void atualizarEnfermeiro(Enfermeiro enfermeiro, int index) {
-    listaDeEnfermeiros.set(index, enfermeiro);
+    public void atualizarEnfermeiro(Enfermeiro enfermeiroParaAtualizar,  UUID idEnfermeiro) {
+        // Encontra o paciente com base no UUID fornecido e atualiza seus dados
+        for (int i = 0; i < listaDeEnfermeiros.size(); i++) {
+            Enfermeiro enfermeiro = listaDeEnfermeiros.get(i);
+            if (enfermeiro.getIdEnfermeiro().equals(idEnfermeiro)) {
+                listaDeEnfermeiros.set(i, enfermeiroParaAtualizar);
+                break;
+            } 
+        }
     
     }
     
@@ -118,8 +125,18 @@ public class MenuBack {
     
     }
     
-    public void excluirEnfermeiro(int index) {
-    listaDeEnfermeiros.remove(index);
+    public void excluirEnfermeiro(UUID idEnfermeiro) {
+        // Encontra o paciente com base no UUID fornecido e o remove da lista
+        Enfermeiro enfermeiroParaExcluir = null;
+        for (Enfermeiro enfermeiro : listaDeEnfermeiros) {
+            if (enfermeiro.getIdEnfermeiro().equals(idEnfermeiro)) {
+                enfermeiroParaExcluir = enfermeiro;
+                break;
+            }
+        }
+        if (enfermeiroParaExcluir != null) {
+            listaDeEnfermeiros.remove(enfermeiroParaExcluir);
+        }
     
     }
     

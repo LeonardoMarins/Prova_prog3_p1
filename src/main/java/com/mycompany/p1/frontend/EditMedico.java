@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,10 +38,10 @@ public class EditMedico extends javax.swing.JFrame {
         this.idMedico = idMedico;
         
         for (int i = 0; i < menuB.listaDeMedicos.size(); i++) {
-        if (menuB.listaDeMedicos.get(i).getIdMedico().equals(idMedico)) {
-            this.rows = i;
-            break;
-        }
+            if (menuB.listaDeMedicos.get(i).getIdMedico().equals(idMedico)) {
+                this.rows = i;
+                break;
+            }
         }
               
         jComboBox3.addItem("Masculino");

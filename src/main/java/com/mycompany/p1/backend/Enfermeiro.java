@@ -4,13 +4,14 @@
  */
 package com.mycompany.p1.backend;
 
+import java.util.UUID;
+
 /**
  *
  * @author marin
  */
 public class Enfermeiro extends AtendenteHospitalar {
-    protected static Long proximoIdEnfermeiro = 0l;
-    private Long idEnfermeiro;
+    protected UUID idEnfermeiro;
     protected boolean treinadoOpRX;
     protected AtendenteHospitalar atendete;
     
@@ -22,20 +23,20 @@ public class Enfermeiro extends AtendenteHospitalar {
         this.endereco = pessoal.endereco;
         this.contato = pessoal.contato;
         this.genero = pessoal.genero;
-        this.idEnfermeiro = proximoIdEnfermeiro++;
+        this.idEnfermeiro = UUID.randomUUID();
     }
     
      /**
      * @return the idEnfermeiro
      */
-    public Long getIdEnfermeiro() {
+    public UUID getIdEnfermeiro() {
         return idEnfermeiro;
     }
 
     /**
      * @param idEnfermeiro the idEnfermeiro to set
      */
-    public void setIdEnfermeiro(Long idEnfermeiro) {
+    public void setIdEnfermeiro(UUID idEnfermeiro) {
         this.idEnfermeiro = idEnfermeiro;
     }
 

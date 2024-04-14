@@ -4,14 +4,14 @@
  */
 package com.mycompany.p1.frontend;
 
-import com.mycompany.p1.backend.ContatoTelEmail;
-import com.mycompany.p1.backend.Endereco;
+
 import com.mycompany.p1.backend.Enfermeiro;
 import com.mycompany.p1.backend.Genero;
-import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -23,13 +23,23 @@ public class EditEnfermeiro extends javax.swing.JFrame {
      * Creates new form EditEnfermeiro
      */
     private MenuBack menuB;
-    private int rows;
+    int rows;
+    private UUID idEnfermeiro;
+    Date dataAtual = new Date();
+    String dataCadastro = dataAtual.toGMTString();
     
-    public EditEnfermeiro(MenuBack menu, int row) {
+    public EditEnfermeiro(MenuBack menu, UUID idEnfermeiro) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
-        this.rows = row;
+        this.idEnfermeiro = idEnfermeiro;
+        
+        for (int i = 0; i < menuB.listaDeMedicos.size(); i++) {
+            if (menuB.listaDeMedicos.get(i).getIdMedico().equals(idEnfermeiro)) {
+                this.rows = i;
+                break;
+            }
+        }
               
         jComboBox3.addItem("Masculino");
         jComboBox3.repaint();
@@ -250,7 +260,7 @@ public class EditEnfermeiro extends javax.swing.JFrame {
             }
             enfermeiroParaEditar.setGenero(genero);
             
-            menuB.atualizarEnfermeiro(enfermeiroParaEditar, rows);
+            menuB.atualizarEnfermeiro(enfermeiroParaEditar, idEnfermeiro);
         }catch(NumberFormatException | ParseException ex) {
             ex.getMessage();
         }catch(Exception exs) {
@@ -285,12 +295,12 @@ public class EditEnfermeiro extends javax.swing.JFrame {
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
-        int row = 0;
+        UUID idEnfermeiro = UUID.randomUUID();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditEnfermeiro(menu,row).setVisible(true);
+                new EditEnfermeiro(menu,idEnfermeiro).setVisible(true);
             }
         });
     }
