@@ -4,6 +4,8 @@
  */
 package com.mycompany.p1.backend;
 
+
+
 /**
  *
  * @author marin
@@ -19,6 +21,10 @@ public class Responsavel extends ContatoTelEmail {
         this.contato = contato;
         this.nomeResponsavel = nomeResponsavel;
         Responsavel.idResponsavel++;
+        
+        if (nomeResponsavel == null || nomeResponsavel.isEmpty()) {
+            throw new IllegalArgumentException("O nome do paciente não pode estar vazio");
+        }
     }
     
     public Long getIdResponsavel() {

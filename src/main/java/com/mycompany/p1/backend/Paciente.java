@@ -16,7 +16,7 @@ public class Paciente extends DadoPessoal {
     private Long idPaciente; 
     private int idade;
     private String dataCadastro; 
-    private String obsGeral;
+    private String obsGeral = "";
     private ConsultaMedica historicoConsultaMedica;
     private Responsavel contatoResponsavel;
     
@@ -28,6 +28,8 @@ public class Paciente extends DadoPessoal {
         this.obsGeral = obsGeral;
         this.idPaciente = proximoIdPaciente++;
     }
+    
+
 
     /**
      * @return the idPaciente

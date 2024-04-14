@@ -8,6 +8,8 @@ import com.mycompany.p1.frontend.Menu;
 import com.mycompany.p1.backend.ContatoTelEmail;
 import com.mycompany.p1.backend.MenuBack;
 import com.mycompany.p1.backend.Responsavel;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -112,14 +114,27 @@ public class Responsaveis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = jTextField1.getText();
+       try {
+            
+            String nome = jTextField1.getText();
         
-        option = jComboBox1.getSelectedIndex();
-        ContatoTelEmail contatoSelecionado = menuB.getListaContato().get(option);
+            option = jComboBox1.getSelectedIndex();
+            ContatoTelEmail contatoSelecionado = menuB.getListaContato().get(option);
         
-        Responsavel responsavel = new Responsavel(nome, contatoSelecionado);
+            Responsavel responsavel = new Responsavel(nome, contatoSelecionado);
 
-        menuB.adicionarResponsavel(responsavel);
+            menuB.adicionarResponsavel(responsavel);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
+            
+        }catch(IndexOutOfBoundsException ex) {
+            ex.getMessage();
+            JOptionPane.showMessageDialog(rootPane, "o contatoTelEmail deve ser cadastrado antes "
+                    + "para conseguir cadastrar um responsavel");
+        }catch(IllegalArgumentException exs) {
+            exs.getMessage();
+            JOptionPane.showMessageDialog(rootPane, "o campo de nome do responsavel não pode ser vazio");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

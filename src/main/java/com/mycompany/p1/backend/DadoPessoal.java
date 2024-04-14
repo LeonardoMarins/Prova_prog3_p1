@@ -26,6 +26,10 @@ public class DadoPessoal {
         this.endereco = end;
         this.contato = contato;
         this.genero = genero;
+        
+        if (nome == null || nome.isEmpty()) {
+            throw new IllegalArgumentException("O nome do paciente não pode estar vazio");
+        }
     }
 
     /**
