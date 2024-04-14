@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -59,7 +60,7 @@ public class ListarPacientes extends javax.swing.JFrame {
         int row = e.getY() / jTable1.getRowHeight();
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             Object idValue = jTable1.getValueAt(row, 0);
-            int id = Integer.parseInt(String.valueOf(idValue));
+            UUID id = (UUID) idValue; // Convertendo para UUID
             System.out.println("ID do paciente na linha " + row + ": " + id);
 
             Object value = jTable1.getValueAt(row, column);
@@ -67,54 +68,40 @@ public class ListarPacientes extends javax.swing.JFrame {
                 new EditPaciente(menuB, id).setVisible(true);
                 setVisible(false);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                menuB.excluirConsulta(row);
+                menuB.excluirPaciente(id);
                 setVisible(false);
             }
         }
     }
 });
         
-        jButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String campo = campoPesquisar.getText();
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.setRowCount(0);
-                for(int i = 0; i < menuB.listaDePaciente.size(); i++) {
-                    if(menuB.listaDePaciente.get(i).getNomePessoal().toLowerCase().contains(campo)) {
-                       model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
-                        menuB.listaDePaciente.get(i).getIdPaciente(),
-                        menuB.listaDePaciente.get(i).getNomePessoal(),
-                        menuB.listaDePaciente.get(i).getContato().getTelefone(),
-                        menuB.listaDePaciente.get(i).getContatoResponsavel().getNomeResponsavel(),
-                        menuB.listaDePaciente.get(i).getDataCadastro(),
-                        menuB.listaDePaciente.get(i).getDataNascimento(),
-                        menuB.listaDePaciente.get(i).getEndereco().getRua(),
-                        menuB.listaDePaciente.get(i).getGenero().M,
-                        menuB.listaDePaciente.get(i).getIdade(),
-                        menuB.listaDePaciente.get(i).getObsGeral(),
-                       "Edit", 
-                       "Delete"
-                    });  
-                    }else if(campo.isEmpty()) {
-                        model.addRow(new Object[]{ 
-                        menuB.listaDePaciente.get(i).getNomePessoal(),
-                        menuB.listaDePaciente.get(i).getContato().getTelefone(),
-                        menuB.listaDePaciente.get(i).getContatoResponsavel().getNomeResponsavel(),
-                        menuB.listaDePaciente.get(i).getDataCadastro(),
-                        menuB.listaDePaciente.get(i).getDataNascimento(),
-                        menuB.listaDePaciente.get(i).getEndereco().getRua(),
-                        menuB.listaDePaciente.get(i).getGenero().M,
-                        menuB.listaDePaciente.get(i).getIdade(),
-                        menuB.listaDePaciente.get(i).getObsGeral(),
-                        "Edit", 
-                        "Delete" 
-                        });  
-                    }
-                }
+       botaoPesquisar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String termo = campoPesquisar.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpa a tabela antes de adicionar os resultados filtrados
+
+        for (Paciente paciente : listaPacientes) {
+            if (paciente.getNomePessoal().toLowerCase().contains(termo)) {
+                model.addRow(new Object[]{
+                    paciente.getIdPaciente(),
+                    paciente.getNomePessoal(),
+                    paciente.getContato().getTelefone(),
+                    paciente.getContatoResponsavel().getNomeResponsavel(),
+                    paciente.getDataCadastro(),
+                    paciente.getDataNascimento(),
+                    paciente.getEndereco().getRua(),
+                    paciente.getGenero().M,
+                    paciente.getIdade(),
+                    paciente.getObsGeral(),
+                    "Edit",
+                    "Delete"
+                });
             }
-            
-        });
+        }
+    }
+});
 
     }
 
@@ -129,7 +116,7 @@ public class ListarPacientes extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        botaoPesquisar = new javax.swing.JButton();
         campoPesquisar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,7 +131,7 @@ public class ListarPacientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("PESQUISAR");
+        botaoPesquisar.setText("PESQUISAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +144,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(botaoPesquisar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -166,7 +153,7 @@ public class ListarPacientes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(botaoPesquisar)
                     .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,8 +201,8 @@ public class ListarPacientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoPesquisar;
     private javax.swing.JTextField campoPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

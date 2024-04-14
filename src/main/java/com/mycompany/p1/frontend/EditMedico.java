@@ -11,6 +11,7 @@ import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.MenuBack;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,8 @@ public class EditMedico extends javax.swing.JFrame {
      */
     private MenuBack menuB;
     private int rows;
+    Date dataAtual = new Date();
+    String dataCadastro = dataAtual.toGMTString();
     
     public EditMedico(MenuBack menu, int row) {
         initComponents();
@@ -36,6 +39,15 @@ public class EditMedico extends javax.swing.JFrame {
         jComboBox3.repaint();
         jComboBox3.addItem("Feminino");
         jComboBox3.repaint();
+        
+        jTextField1.setText(String.valueOf(menuB.listaDeMedicos.get(rows).getNumeroCRM()));
+        jTextArea1.setText(menuB.listaDeMedicos.get(rows).getAreasEspecialidade());
+        jTextField2.setText(menuB.listaDeMedicos.get(rows).getSetor());
+        jTextField3.setText(String.valueOf(menuB.listaDeMedicos.get(rows).getChSemanal()));
+        jTextField4.setText(menuB.listaDeMedicos.get(rows).getNomePessoal());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataNascimentoStr = sdf.format(menuB.listaDePaciente.get(rows).getDataNascimento());
+        jTextField5.setText(dataNascimentoStr);
                
         for(ContatoTelEmail contato: menuB.contatoList) {
             jComboBox2.addItem(String.valueOf(contato.getTelefone()));

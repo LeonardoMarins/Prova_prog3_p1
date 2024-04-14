@@ -4,13 +4,15 @@
  */
 package com.mycompany.p1.backend;
 
+import java.util.UUID;
+
 /**
  *
  * @author marin
  */
 public class ConsultaMedica {
     protected static Long idConsulta = 0l;
-    protected Long idPaciente; 
+    protected UUID idPaciente; 
     protected Long idMedico;
     protected String exameQueixa;
     protected String diagnostico;
@@ -48,14 +50,14 @@ public class ConsultaMedica {
     /**
      * @return the idPaciente
      */
-    public Long getIdPaciente() {
+    public UUID getIdPaciente() {
         return idPaciente;
     }
 
     /**
      * @param idPaciente the idPaciente to set
      */
-    public void setIdPaciente(Long idPaciente) {
+    public void setIdPaciente(UUID idPaciente) {
         this.idPaciente = idPaciente;
     }
 

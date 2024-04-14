@@ -12,6 +12,8 @@ import com.mycompany.p1.backend.Paciente;
 import com.mycompany.p1.backend.Responsavel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,18 +27,31 @@ public class EditPaciente extends javax.swing.JFrame {
      * Creates new form Paciente
      */
     private MenuBack menuB;
-    private int rows;
+    private UUID paciente;
+    Date dataAtual = new Date();
+    String dataCadastro = dataAtual.toGMTString();
+    int rows;
     
-    public EditPaciente(MenuBack menu, int row) {
+    public EditPaciente(MenuBack menu, UUID idPaciente) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
-        this.rows = row;
+        this.paciente = idPaciente;
+        
+         for (int i = 0; i < menuB.listaDePaciente.size(); i++) {
+        if (menuB.listaDePaciente.get(i).getIdPaciente().equals(idPaciente)) {
+            this.rows = i;
+            break;
+        }
+    }
         
         jTextField1.setText(menuB.listaDePaciente.get(rows).getNomePessoal());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dataNascimentoStr = sdf.format(menuB.listaDePaciente.get(rows).getDataNascimento());
         jTextField2.setText(dataNascimentoStr);
+        jTextField3.setText(String.valueOf(menuB.listaDePaciente.get(rows).getIdade()));
+        jTextField4.setText(dataCadastro);
+        jTextArea1.setText(menuB.listaDePaciente.get(rows).getObsGeral());
         
         for(ContatoTelEmail contato: menuB.contatoList) {
             jComboBox2.addItem(String.valueOf(contato.getTelefone()));
@@ -267,7 +282,7 @@ public class EditPaciente extends javax.swing.JFrame {
             pacienteParaEditar.setObsGeral(jTextArea1.getText());
             pacienteParaEditar.setContatoResponsavel(menuB.responsavelList.get(jComboBox5.getSelectedIndex()));
             
-            menuB.atualizarPaciente(pacienteParaEditar, rows);
+            menuB.atualizarPaciente(pacienteParaEditar, paciente);
             
             
         } catch (ParseException ex) {
@@ -306,13 +321,13 @@ public class EditPaciente extends javax.swing.JFrame {
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
-        int row = 0;
+        UUID idPaciente = UUID.randomUUID();
         
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditPaciente(menu, row).setVisible(true);
+                new EditPaciente(menu, idPaciente).setVisible(true);
             }
         });
     }

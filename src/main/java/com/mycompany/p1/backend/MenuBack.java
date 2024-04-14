@@ -5,6 +5,7 @@
 package com.mycompany.p1.backend;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -48,9 +49,15 @@ public class MenuBack {
     listaDeConsultaMedica.add(consulta);
     }
     
-    public void atualizarPaciente(Paciente paciente, int index) {
-    listaDePaciente.set(index, paciente);
-    
+     public void atualizarPaciente(Paciente pacienteAtualizado, UUID idPaciente) {
+        // Encontra o paciente com base no UUID fornecido e atualiza seus dados
+        for (int i = 0; i < listaDePaciente.size(); i++) {
+            Paciente paciente = listaDePaciente.get(i);
+            if (paciente.getIdPaciente().equals(idPaciente)) {
+                listaDePaciente.set(i, pacienteAtualizado);
+                break;
+            }
+        }
     }
     
     public void atualizarMedico(Medico medico, int index) {
@@ -68,9 +75,18 @@ public class MenuBack {
     
     }
     
-    public void excluirPaciente(int index) {
-    listaDePaciente.remove(index);
-    
+    public void excluirPaciente(UUID idPaciente) {
+        // Encontra o paciente com base no UUID fornecido e o remove da lista
+        Paciente pacienteParaExcluir = null;
+        for (Paciente paciente : listaDePaciente) {
+            if (paciente.getIdPaciente().equals(idPaciente)) {
+                pacienteParaExcluir = paciente;
+                break;
+            }
+        }
+        if (pacienteParaExcluir != null) {
+            listaDePaciente.remove(pacienteParaExcluir);
+        }
     }
     
     public void excluirMedico(int index) {

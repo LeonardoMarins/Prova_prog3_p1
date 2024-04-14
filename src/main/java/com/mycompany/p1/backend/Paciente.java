@@ -6,14 +6,14 @@ package com.mycompany.p1.backend;
 
 import com.mycompany.p1.backend.Responsavel;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
  * @author marin
  */
 public class Paciente extends DadoPessoal {
-    private static Long proximoIdPaciente = 0L;
-    private Long idPaciente; 
+    private UUID idPaciente;
     private int idade;
     private String dataCadastro; 
     private String obsGeral = "";
@@ -26,7 +26,7 @@ public class Paciente extends DadoPessoal {
         this.dataCadastro = dataCadastro;
         this.contatoResponsavel = responsavel;
         this.obsGeral = obsGeral;
-        this.idPaciente = proximoIdPaciente++;
+        this.idPaciente = UUID.randomUUID();
     }
     
 
@@ -34,14 +34,14 @@ public class Paciente extends DadoPessoal {
     /**
      * @return the idPaciente
      */
-    public Long getIdPaciente() {
+    public UUID getIdPaciente() {
          return idPaciente;
     }
 
     /**
      * @param idPaciente the idPaciente to set
      */
-    public void setIdPaciente(Long idPacientes) {
+    public void setIdPaciente(UUID idPacientes) {
         idPaciente = idPacientes;
     }
 
