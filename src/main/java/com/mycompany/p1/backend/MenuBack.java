@@ -60,8 +60,15 @@ public class MenuBack {
         }
     }
     
-    public void atualizarMedico(Medico medico, int index) {
-    listaDeMedicos.set(index, medico);
+    public void atualizarMedico(Medico medicoParaAtualizar, UUID idMedico) {
+        // Encontra o paciente com base no UUID fornecido e atualiza seus dados
+        for (int i = 0; i < listaDeMedicos.size(); i++) {
+            Medico medico = listaDeMedicos.get(i);
+            if (medico.getIdMedico().equals(idMedico)) {
+                listaDeMedicos.set(i, medicoParaAtualizar);
+                break;
+            }
+        }
     
     }
     
@@ -89,8 +96,18 @@ public class MenuBack {
         }
     }
     
-    public void excluirMedico(int index) {
-    listaDeMedicos.remove(index);
+    public void excluirMedico(UUID idMedico) {
+    // Encontra o paciente com base no UUID fornecido e o remove da lista
+        Medico medicoParaExcluir = null;
+        for (Medico medico : listaDeMedicos) {
+            if (medico.getIdMedico().equals(idMedico)) {
+                medicoParaExcluir = medico;
+                break;
+            }
+        }
+        if (medicoParaExcluir != null) {
+            listaDeMedicos.remove(medicoParaExcluir);
+        }
     
     }
     

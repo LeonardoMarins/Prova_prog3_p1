@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -62,7 +63,7 @@ public class ListarMedicos extends javax.swing.JFrame {
         if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
             if (row < jTable1.getRowCount() && row >= 0 && column < jTable1.getColumnCount() && column >= 0) {
                 Object idValue = jTable1.getValueAt(row, 0);
-                int id = Integer.parseInt(String.valueOf(idValue));
+                UUID id = (UUID) idValue; // Convertendo para UUID
                 System.out.println("ID do paciente na linha " + row + ": " + id);
                 
             Object value = jTable1.getValueAt(row, column);
@@ -72,56 +73,43 @@ public class ListarMedicos extends javax.swing.JFrame {
                 
                 System.out.println("Editar paciente na linha: " + row);
             } else if (value instanceof String && ((String) value).equals("Delete")) {
-                menuB.excluirMedico(row);
+                menuB.excluirMedico(id);
                 setVisible(false);
                 System.out.println("Excluir paciente na linha: " + row);
             }
         }
     }
 }});
-         jButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String campo = campoPesquisar.getText();
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.setRowCount(0);
-                for(int i = 0; i < menuB.listaDeMedicos.size(); i++) {
-                    if(menuB.listaDeMedicos.get(i).getNomePessoal().toLowerCase().contains(campo)) {
-                       model.addRow(new Object[]{ // Adiciona uma nova linha na tabela
-                       menuB.listaDeMedicos.get(i).getNomePessoal(),
-                        menuB.listaDeMedicos.get(i).getDataNascimento(),
-                        menuB.listaDeMedicos.get(i).getEndereco().getRua(),
-                        menuB.listaDeMedicos.get(i).getContato().getTelefone(),
-                        menuB.listaDeMedicos.get(i).getGenero().M,
-                        menuB.listaDeMedicos.get(i).getNumeroCRM(),
-                        menuB.listaDeMedicos.get(i).getAreasEspecialidade(),
-                        menuB.listaDeMedicos.get(i).isCirurgiao(),
-                        menuB.listaDeMedicos.get(i).getSetor(),
-                        menuB.listaDeMedicos.get(i).getChSemanal(),
-                       "Edit", 
-                       "Delete"
-            
-                        });  
-                    }else if(campo.isEmpty()) {
-                        model.addRow(new Object[]{ 
-                        menuB.listaDeMedicos.get(i).getNomePessoal(),
-                        menuB.listaDeMedicos.get(i).getDataNascimento(),
-                        menuB.listaDeMedicos.get(i).getEndereco().getRua(),
-                        menuB.listaDeMedicos.get(i).getContato().getTelefone(),
-                        menuB.listaDeMedicos.get(i).getGenero().M,
-                        menuB.listaDeMedicos.get(i).getNumeroCRM(),
-                        menuB.listaDeMedicos.get(i).getAreasEspecialidade(),
-                        menuB.listaDeMedicos.get(i).isCirurgiao(),
-                        menuB.listaDeMedicos.get(i).getSetor(),
-                        menuB.listaDeMedicos.get(i).getChSemanal(),
-                        "Edit", 
-                        "Delete" 
-                        });  
-                    }
-                }
+        
+        botaoPesquisar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String termo = campoPesquisar.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpa a tabela antes de adicionar os resultados filtrados
+
+        for (Medico medico : listaMedicos) {
+            if (medico.getNomePessoal().toLowerCase().contains(termo)) {
+                model.addRow(new Object[]{
+                        medico.getIdMedico(),
+                        medico.getNomePessoal(),
+                        medico.getDataNascimento(),
+                        medico.getEndereco().getRua(),
+                        medico.getContato().getTelefone(),
+                        medico.getGenero().M,
+                        medico.getNumeroCRM(),
+                        medico.getAreasEspecialidade(),
+                        medico.isCirurgiao(),
+                        medico.getSetor(),
+                        medico.getChSemanal(),
+                    "Edit",
+                    "Delete"
+                });
             }
-            
-        });
+        }
+    }
+});
+        
     }
 
     /**
@@ -136,7 +124,7 @@ public class ListarMedicos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         campoPesquisar = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        botaoPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,10 +140,10 @@ public class ListarMedicos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("PESQUISAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoPesquisar.setText("PESQUISAR");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoPesquisarActionPerformed(evt);
             }
         });
 
@@ -170,7 +158,7 @@ public class ListarMedicos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(botaoPesquisar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -180,7 +168,7 @@ public class ListarMedicos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(botaoPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -189,9 +177,9 @@ public class ListarMedicos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,8 +219,8 @@ public class ListarMedicos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoPesquisar;
     private javax.swing.JTextField campoPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

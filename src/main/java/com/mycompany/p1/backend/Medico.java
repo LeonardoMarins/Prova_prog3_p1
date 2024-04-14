@@ -5,6 +5,7 @@
 package com.mycompany.p1.backend;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -12,8 +13,7 @@ import java.util.Date;
  */
 public class Medico extends AtendenteHospitalar {
 
-   protected static Long proximoIdMedico = 0l;
-   private Long idMedico;
+   private UUID idMedico;
    protected int numeroCRM;
    protected String areasEspecialidade;
    protected boolean cirurgiao;
@@ -30,13 +30,13 @@ public class Medico extends AtendenteHospitalar {
        this.numeroCRM = numeroCRM;
        this.areasEspecialidade = areaEspciealidade;
        this.cirurgiao = cirurgiao;
-       this.idMedico = proximoIdMedico++;
+        this.idMedico = UUID.randomUUID();
    }
    
    /**
      * @return the idMedico
      */
-    public Long getIdMedico() {
+    public UUID getIdMedico() {
         return idMedico;
     }
 

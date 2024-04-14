@@ -12,8 +12,10 @@ import com.mycompany.p1.backend.MenuBack;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,15 +27,23 @@ public class EditMedico extends javax.swing.JFrame {
      * Creates new form EditMedico
      */
     private MenuBack menuB;
-    private int rows;
+    int rows;
+    private UUID idMedico;
     Date dataAtual = new Date();
     String dataCadastro = dataAtual.toGMTString();
     
-    public EditMedico(MenuBack menu, int row) {
+    public EditMedico(MenuBack menu, UUID idMedico) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.menuB = menu;
-        this.rows = row;
+        this.idMedico = idMedico;
+        
+        for (int i = 0; i < menuB.listaDeMedicos.size(); i++) {
+        if (menuB.listaDeMedicos.get(i).getIdMedico().equals(idMedico)) {
+            this.rows = i;
+            break;
+        }
+        }
               
         jComboBox3.addItem("Masculino");
         jComboBox3.repaint();
@@ -46,7 +56,7 @@ public class EditMedico extends javax.swing.JFrame {
         jTextField3.setText(String.valueOf(menuB.listaDeMedicos.get(rows).getChSemanal()));
         jTextField4.setText(menuB.listaDeMedicos.get(rows).getNomePessoal());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataNascimentoStr = sdf.format(menuB.listaDePaciente.get(rows).getDataNascimento());
+        String dataNascimentoStr = sdf.format(menuB.listaDeMedicos.get(rows).getDataNascimento());
         jTextField5.setText(dataNascimentoStr);
                
         for(ContatoTelEmail contato: menuB.contatoList) {
@@ -313,7 +323,7 @@ public class EditMedico extends javax.swing.JFrame {
             }
             medicoParaEditar.setGenero(genero);
             
-            menuB.atualizarMedico(medicoParaEditar, rows);
+            menuB.atualizarMedico(medicoParaEditar, idMedico);
             
             
         } catch (ParseException ex) {
@@ -352,12 +362,12 @@ public class EditMedico extends javax.swing.JFrame {
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
-        int row = 0;
+        UUID idPaciente = UUID.randomUUID();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditMedico(menu,row).setVisible(true);
+                new EditMedico(menu,idPaciente).setVisible(true);
             }
         });
     }

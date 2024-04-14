@@ -13,7 +13,7 @@ import java.util.UUID;
 public class ConsultaMedica {
     protected static Long idConsulta = 0l;
     protected UUID idPaciente; 
-    protected Long idMedico;
+    protected UUID idMedico;
     protected String exameQueixa;
     protected String diagnostico;
     protected String prescricao;
@@ -64,14 +64,14 @@ public class ConsultaMedica {
     /**
      * @return the idMedico
      */
-    public Long getIdMedico() {
+    public UUID getIdMedico() {
         return idMedico;
     }
 
     /**
      * @param idMedico the idMedico to set
      */
-    public void setIdMedico(Long idMedico) {
+    public void setIdMedico(UUID idMedico) {
         this.idMedico = idMedico;
     }
 
