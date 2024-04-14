@@ -11,6 +11,7 @@ import com.mycompany.p1.backend.Paciente;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,6 +200,7 @@ public class EditConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
         int opPaciente = jComboBox1.getSelectedIndex();
         int opMedico = jComboBox2.getSelectedIndex();
 
@@ -220,19 +222,34 @@ public class EditConsulta extends javax.swing.JFrame {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, selectedRadio1);
             menuB.atualizarConsulta(consulta,idConsulta);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(consulta.getIdConsulta());
         } else if (indicacao2) {
             selectedRadio2 = false;
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, selectedRadio2);
             menuB.atualizarConsulta(consulta,idConsulta);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(consulta.getIdConsulta());
         } else {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, false);
             menuB.atualizarConsulta(consulta,idConsulta);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             System.out.println(consulta.getIdConsulta());
         }
+      }catch(IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(rootPane, "o paciente e o medico devem ser cadastrado antes "
+            + " em cadastros especificos para conseguir cadastrar uma consulta");
+       }catch(IllegalArgumentException exs) {
+           JOptionPane.showMessageDialog(rootPane, "a queixa do paciente não pode ficar vazia");
+           exs.getMessage();
+       }catch(Exception exs) {
+           exs.getMessage();
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

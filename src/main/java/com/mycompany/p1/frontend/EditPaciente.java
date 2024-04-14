@@ -14,8 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -283,10 +282,21 @@ public class EditPaciente extends javax.swing.JFrame {
             pacienteParaEditar.setContatoResponsavel(menuB.responsavelList.get(jComboBox5.getSelectedIndex()));
             
             menuB.atualizarPaciente(pacienteParaEditar, paciente);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(EditPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (ParseException ex) {
+            JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+        }catch(IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(rootPane, "O contatoTelEmail, endereço e responsavel devem ser cadastrado antes "
+                    + "em cadastros basicos para conseguir cadastrar um paciente");
+        }catch(NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "A idade não podem ser vazias");
+            ex.getMessage();
+        }catch(IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, "O nome do paciente não pode ser vazio");
+        }catch(Exception ex) {
+            ex.getMessage();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

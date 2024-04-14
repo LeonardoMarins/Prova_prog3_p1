@@ -285,7 +285,7 @@ public class Pacientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
             this.dispose();
 
-        } catch (ParseException ex) {
+        }catch (ParseException ex) {
             JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
         }catch(IndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "O contatoTelEmail, endereço e responsavel devem ser cadastrado antes "

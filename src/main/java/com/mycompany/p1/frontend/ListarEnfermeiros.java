@@ -6,6 +6,8 @@ package com.mycompany.p1.frontend;
 
 import com.mycompany.p1.backend.Enfermeiro;
 import com.mycompany.p1.backend.MenuBack;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -76,6 +78,32 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
         }
     }
 }});
+        botaoPesquisar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String termo = campoPesquisar.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpa a tabela antes de adicionar os resultados filtrados
+
+        for (var enfermeiro : listaEnfermeiros) {
+            if (enfermeiro.getNomePessoal().toLowerCase().contains(termo)) {
+                model.addRow(new Object[]{
+                    enfermeiro.getIdEnfermeiro(),
+                    enfermeiro.getNomePessoal(),
+                    enfermeiro.getDataNascimento(),
+                    enfermeiro.getEndereco().getRua(),
+                    enfermeiro.getContato().getTelefone(),
+                    enfermeiro.getGenero().M,
+                    enfermeiro.getSetor(),
+                    enfermeiro.getChSemanal(),
+                    enfermeiro.isTreinadoOpRX(),
+                    "Edit",
+                    "Delete"
+                });
+            }
+        }
+    }
+});
     }
 
     /**
@@ -89,6 +117,8 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        campoPesquisar = new javax.swing.JTextField();
+        botaoPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,15 +134,29 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        botaoPesquisar.setText("PESQUISAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoPesquisar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -156,6 +200,8 @@ public class ListarEnfermeiros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoPesquisar;
+    private javax.swing.JTextField campoPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

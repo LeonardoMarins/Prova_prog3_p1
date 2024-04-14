@@ -45,6 +45,14 @@ public class EditEnfermeiro extends javax.swing.JFrame {
         jComboBox3.repaint();
         jComboBox3.addItem("Feminino");
         jComboBox3.repaint();
+        
+        jTextField1.setText(menuB.listaDeEnfermeiros.get(rows).getNomePessoal());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataNascimentoStr = sdf.format(menuB.listaDeEnfermeiros.get(rows).getDataNascimento());
+        jTextField2.setText(dataNascimentoStr);
+        jTextField3.setText(menuB.listaDeEnfermeiros.get(rows).getSetor());
+        jTextField4.setText(String.valueOf(menuB.listaDeEnfermeiros.get(rows).getChSemanal()));
+        jRadioButton1.isSelected();
                
         for(var contato: menuB.contatoList) {
             jComboBox2.addItem(String.valueOf(contato.getTelefone()));

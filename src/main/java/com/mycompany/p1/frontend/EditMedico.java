@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -323,11 +324,23 @@ public class EditMedico extends javax.swing.JFrame {
             medicoParaEditar.setGenero(genero);
             
             menuB.atualizarMedico(medicoParaEditar, idMedico);
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
             
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(EditPaciente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }catch(ParseException ex) {
+           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+       }catch(NumberFormatException exs) {
+           JOptionPane.showMessageDialog(rootPane, "o numero de CRM e o chSemanal não podem ser vazios"
+                   + " para o cadastro do medico e não devem conter letras");
+           exs.getMessage();
+       }catch(IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(rootPane, "o contatoTelEmail, endereço e responsavel devem ser cadastrado antes "
+                    + " em cadastros basicos para conseguir cadastrar um paciente");
+       }catch(IllegalArgumentException ex) {
+           JOptionPane.showMessageDialog(rootPane, "o nome do medico não pode ser vazio");
+       }catch(Exception ex) {
+           ex.getMessage();
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed

@@ -15,6 +15,7 @@ com\mycompany\p1\frontend\Consultas$2.class
 com\mycompany\p1\frontend\EditEnfermeiro.class
 com\mycompany\p1\frontend\Menu$14.class
 com\mycompany\p1\frontend\EditPaciente$2.class
+com\mycompany\p1\frontend\ListarEnfermeiros$3.class
 com\mycompany\p1\backend\DadoPessoal.class
 com\mycompany\p1\frontend\ListarConsulta.class
 com\mycompany\p1\frontend\ListarPacientes$1.class
