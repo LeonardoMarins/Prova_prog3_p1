@@ -6,6 +6,7 @@ package com.mycompany.p1.frontend;
 
 import com.mycompany.p1.backend.ContatoTelEmail;
 import com.mycompany.p1.backend.MenuBack;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -119,6 +120,7 @@ public class ContatoTelEmails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try {
         String telefone = jTextField1.getText();
         int telefoneS = Integer.parseInt(telefone);
         String celular = jTextField2.getText();
@@ -130,6 +132,13 @@ public class ContatoTelEmails extends javax.swing.JFrame {
     
          // Adiciona o endereço à lista de endereços na tela Menu
          menu.adicionarContato(contato);
+         JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+         this.dispose();
+     }catch(NumberFormatException exs) {
+         JOptionPane.showMessageDialog(rootPane, "o campo de celular e numero não podem conter letras");
+     }catch(IllegalArgumentException exs) {
+         JOptionPane.showMessageDialog(rootPane, "o campo de celular e numero não podem ser vazios");
+     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

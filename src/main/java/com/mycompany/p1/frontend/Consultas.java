@@ -7,6 +7,7 @@ import com.mycompany.p1.backend.ConsultaMedica;
 import com.mycompany.p1.backend.Medico;
 import com.mycompany.p1.backend.Paciente;
 import com.mycompany.p1.backend.MenuBack;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -177,6 +178,7 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
         int opPaciente = jComboBox1.getSelectedIndex();
         int opMedico = jComboBox2.getSelectedIndex();
         
@@ -199,19 +201,34 @@ public class Consultas extends javax.swing.JFrame {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, selectedRadio1);
             menuB.adicionarConsultaMedica(consulta);
-             System.out.println(consulta.getIdConsulta());
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
+            System.out.println(consulta.getIdConsulta());
         } else if (indicacao2) {
             selectedRadio2 = false;
              ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, selectedRadio2);
              menuB.adicionarConsultaMedica(consulta);
+             JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+             this.dispose();
              System.out.println(consulta.getIdConsulta());
         } else {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico, 
                     exameDeQueixa, diagnostico, prescricao, false);
             menuB.adicionarConsultaMedica(consulta);
-             System.out.println(consulta.getIdConsulta());
+            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            this.dispose();
+            System.out.println(consulta.getIdConsulta());
         }
+      }catch(IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(rootPane, "o paciente e o medico devem ser cadastrado antes "
+            + " em cadastros especificos para conseguir cadastrar uma consulta");
+       }catch(IllegalArgumentException exs) {
+           JOptionPane.showMessageDialog(rootPane, "a queixa do paciente não pode ficar vazia");
+           exs.getMessage();
+       }catch(Exception exs) {
+           exs.getMessage();
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

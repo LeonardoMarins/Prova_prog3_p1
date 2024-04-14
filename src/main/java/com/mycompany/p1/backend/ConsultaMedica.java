@@ -26,6 +26,10 @@ public class ConsultaMedica {
         this.prescricao = prescricao;
         this.indicacaoCirurgica = indicacaoCirurgica;
         idConsulta++;
+        
+        if (exame == null || exame.isEmpty()) {
+            throw new IllegalArgumentException("A queixa do paciente não pode ficar vazia");
+        }
     }
     /**
      * @return the idConsulta

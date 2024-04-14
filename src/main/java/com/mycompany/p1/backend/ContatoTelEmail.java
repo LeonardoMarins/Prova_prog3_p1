@@ -18,6 +18,10 @@ public class ContatoTelEmail {
         this.telefone = telefone;
         this.celular = celular;
         this.email = email;
+        
+        if (celular == 0 || telefone == 0) {
+            throw new IllegalArgumentException("O celular e o telefone não pode ser nulo");
+        }
     }
     
     public int getTelefone() {

@@ -293,7 +293,7 @@ public class Medicos extends javax.swing.JFrame {
              Medico medico = new Medico(dado,numeroCRMI,areaEspecialidade,selectedRadio1,atendimento);
              menuB.adicionarMedico(medico);
              JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
-            this.dispose();
+             this.dispose();
              System.out.println(medico.getIdMedico());
         } else if (outroRadioButtonSelecionado) {
             selectedRadio2 = true;
@@ -314,7 +314,7 @@ public class Medicos extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
        }catch(NumberFormatException exs) {
            JOptionPane.showMessageDialog(rootPane, "o numero de CRM e o chSemanal não podem ser vazios"
-                   + " para o cadastro do medico");
+                   + " para o cadastro do medico e não devem conter letras");
            exs.getMessage();
        }catch(IndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "o contatoTelEmail, endereço e responsavel devem ser cadastrado antes "
