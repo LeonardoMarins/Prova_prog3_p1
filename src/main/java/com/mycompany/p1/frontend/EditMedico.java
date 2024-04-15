@@ -322,7 +322,7 @@ public class EditMedico extends javax.swing.JFrame {
             medicoParaEditar.setGenero(genero);
             
             menuB.atualizarMedico(medicoParaEditar, idMedico);
-            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            JOptionPane.showMessageDialog(rootPane, "Registro atualizado com sucesso");
             this.dispose();
             
         }catch(ParseException ex) {

@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -269,6 +270,8 @@ public class EditEnfermeiro extends javax.swing.JFrame {
             enfermeiroParaEditar.setGenero(genero);
             
             menuB.atualizarEnfermeiro(enfermeiroParaEditar, idEnfermeiro);
+            JOptionPane.showMessageDialog(rootPane, "Registro atualizado com sucesso");
+            this.dispose();
         }catch(NumberFormatException | ParseException ex) {
             ex.getMessage();
         }catch(Exception exs) {

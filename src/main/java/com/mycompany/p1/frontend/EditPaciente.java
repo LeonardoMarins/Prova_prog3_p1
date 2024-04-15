@@ -282,7 +282,7 @@ public class EditPaciente extends javax.swing.JFrame {
             pacienteParaEditar.setContatoResponsavel(menuB.responsavelList.get(jComboBox5.getSelectedIndex()));
             
             menuB.atualizarPaciente(pacienteParaEditar, paciente);
-            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            JOptionPane.showMessageDialog(rootPane, "Registro atualizado com sucesso");
             this.dispose();
             
         }catch (ParseException ex) {

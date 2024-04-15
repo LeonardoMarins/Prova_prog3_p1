@@ -237,9 +237,8 @@ public class EditConsulta extends javax.swing.JFrame {
             ConsultaMedica consulta = new ConsultaMedica(paciente, medico,
                 exameDeQueixa, diagnostico, prescricao, false);
             menuB.atualizarConsulta(consulta,idConsulta);
-            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
+            JOptionPane.showMessageDialog(rootPane, "Registro atualizado com sucesso");
             this.dispose();
-            System.out.println(consulta.getIdConsulta());
         }
       }catch(IndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "o paciente e o medico devem ser cadastrado antes "
