@@ -134,7 +134,7 @@ public class ExportExcel extends javax.swing.JFrame {
         try (Workbook workbook = new XSSFWorkbook()) {
             exportarPaciente(workbook);
             exportarMedico(workbook);
-            //exportEnfermeiros(workbook);
+            exportarEnfermeiro(workbook);
             //exportConsultasMedicas(workbook);
 
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
@@ -157,7 +157,7 @@ public class ExportExcel extends javax.swing.JFrame {
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("NOME");
         Cell titleCell2 = titleRow.createCell(1);
-        titleCell2.setCellValue("DATA");
+        titleCell2.setCellValue("DATA NASCIMENTO");
         Cell titleCell3 = titleRow.createCell(4);
         titleCell3.setCellValue("ENDEREÇO");
         Cell titleCell4 = titleRow.createCell(6);
@@ -176,8 +176,8 @@ public class ExportExcel extends javax.swing.JFrame {
             Row row = sheet.createRow(i + 1); 
             Cell cell1 = row.createCell(0);
             cell1.setCellValue(menu.listaDePaciente.get(i).getNomePessoal());
-            Cell cell2 = row.createCell(1); 
-            cell2.setCellValue(menu.listaDePaciente.get(i).getDataCadastro());
+            Cell cell2 = row.createCell(2); 
+            cell2.setCellValue(menu.listaDePaciente.get(i).getDataNascimento().toString());
             Cell cell3 = row.createCell(4);
             cell3.setCellValue(menu.listaDePaciente.get(i).getEndereco().getRua());
             Cell cell4 = row.createCell(6); 
@@ -247,13 +247,67 @@ public class ExportExcel extends javax.swing.JFrame {
             Cell cell6 = row.createCell(10); 
             cell6.setCellValue(menu.listaDeMedicos.get(i).getNomePessoal());
             Cell cell7 = row.createCell(12); 
-            cell7.setCellValue(menu.listaDeMedicos.get(i).getDataNascimento());
+            cell7.setCellValue(menu.listaDeMedicos.get(i).getDataNascimento().toString());
             Cell cell8 = row.createCell(14); 
             cell8.setCellValue(menu.listaDeMedicos.get(i).getEndereco().getRua());
             Cell cell9 = row.createCell(16); 
             cell9.setCellValue(menu.listaDeMedicos.get(i).getContato().getCelular());
             Cell cell10 = row.createCell(18); 
             cell10.setCellValue(menu.listaDeMedicos.get(i).getGenero().name());
+        
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+        }
+    }
+}
+      public void exportarEnfermeiro(Workbook workbook) throws IOException {
+         // Caminho para o diretório de downloads do usuário
+        String userHome = System.getProperty("user.home");
+        String downloadsPath = userHome + "/Downloads/";
+    
+        // Caminho completo para o arquivo Excel
+        String filePath = downloadsPath + name + ".xlsx";
+
+        Sheet sheet = workbook.createSheet("Enfermeiro");
+        
+        // Criar a linha de título com os dois títulos lado a lado
+        Row titleRow = sheet.createRow(0);
+        Cell titleCell1 = titleRow.createCell(0);
+        titleCell1.setCellValue("NOME");
+        Cell titleCell2 = titleRow.createCell(2);
+        titleCell2.setCellValue("DATA NASCIMENTO");
+        Cell titleCell3 = titleRow.createCell(4);
+        titleCell3.setCellValue("ENDEREÇO");
+        Cell titleCell4 = titleRow.createCell(6);
+        titleCell4.setCellValue("CONTATO");
+        Cell titleCell5 = titleRow.createCell(8);
+        titleCell5.setCellValue("GENERO");
+        Cell titleCell6 = titleRow.createCell(10);
+        titleCell6.setCellValue("SETOR");
+        Cell titleCell7 = titleRow.createCell(12);
+        titleCell7.setCellValue("CHSEMANAL");
+        Cell titleCell8 = titleRow.createCell(14);
+        titleCell8.setCellValue("TREINADO_OPRX");
+
+        int tamanho = menu.listaDeEnfermeiros.size();
+        for (int i = 0; i < tamanho; i++) {
+            Row row = sheet.createRow(i + 1); 
+            Cell cell1 = row.createCell(0);
+            cell1.setCellValue(menu.listaDeEnfermeiros.get(i).getNomePessoal());
+            Cell cell3 = row.createCell(2);
+            cell3.setCellValue(menu.listaDeEnfermeiros.get(i).getDataNascimento().toString());
+            Cell cell4 = row.createCell(4); 
+            cell4.setCellValue(menu.listaDeEnfermeiros.get(i).getEndereco().getRua());
+            Cell cell5 = row.createCell(6); 
+            cell5.setCellValue(menu.listaDeEnfermeiros.get(i).getContato().getCelular());
+            Cell cell7 = row.createCell(8); 
+            cell7.setCellValue(menu.listaDeEnfermeiros.get(i).getGenero().name());
+            Cell cell8 = row.createCell(10); 
+            cell8.setCellValue(menu.listaDeEnfermeiros.get(i).getSetor());
+            Cell cell9 = row.createCell(12); 
+            cell9.setCellValue(menu.listaDeEnfermeiros.get(i).getChSemanal());
+            Cell cell10 = row.createCell(14); 
+            cell10.setCellValue((boolean) menu.listaDeEnfermeiros.get(i).isTreinadoOpRX());
         
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);
