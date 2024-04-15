@@ -10,11 +10,11 @@ package com.mycompany.p1.backend;
  */
 public class ContatoTelEmail {
     
-    protected int telefone;
-    protected int celular;
+    protected Long telefone;
+    protected Long celular;
     protected String email;
     
-    public ContatoTelEmail(int telefone, int celular, String email) {
+    public ContatoTelEmail(Long telefone, Long celular, String email) {
         this.telefone = telefone;
         this.celular = celular;
         this.email = email;
@@ -24,11 +24,11 @@ public class ContatoTelEmail {
         }
     }
     
-    public int getTelefone() {
+    public Long getTelefone() {
         return this.telefone;
     }
     
-    public int getCelular() {
+    public Long getCelular() {
         return this.celular;
     }
     
@@ -36,11 +36,11 @@ public class ContatoTelEmail {
         return this.email;
     }
     
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 

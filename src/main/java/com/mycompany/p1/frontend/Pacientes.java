@@ -279,7 +279,7 @@ public class Pacientes extends javax.swing.JFrame {
             Paciente paciente = new Paciente(dado, idadeI,
                     dataCadastro, ResponsavelSelecionado, obsGeral);
             menuB.adicionarPaciente(paciente);
-            System.out.println(paciente.getIdPaciente());
+
             JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");
             this.dispose();
 

@@ -122,9 +122,9 @@ public class ContatoTelEmails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      try {
         String telefone = jTextField1.getText();
-        int telefoneS = Integer.parseInt(telefone);
+        Long telefoneS = Long.valueOf(telefone);
         String celular = jTextField2.getText();
-        int celularS = Integer.parseInt(celular);
+        Long celularS = Long.valueOf(celular);
         String email = jTextField3.getText();
 
         

@@ -4,9 +4,6 @@
  */
 package com.mycompany.p1.frontend;
 import com.mycompany.p1.backend.MenuBack;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

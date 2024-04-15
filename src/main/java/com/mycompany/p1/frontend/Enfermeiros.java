@@ -259,7 +259,7 @@ public class Enfermeiros extends javax.swing.JFrame {
             this.dispose();
             System.out.println(enfermeiro.getGenero());
         } else if (treinadoOPRX2) {
-            selectedRadio2 = false;
+            selectedRadio2 = true;
             Enfermeiro enfermeiro = new Enfermeiro(selectedRadio2, atendimento, dado);
             menuB.adicionarEnfermeiro(enfermeiro);
             JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso");

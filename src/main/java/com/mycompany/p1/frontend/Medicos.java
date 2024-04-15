@@ -249,11 +249,6 @@ public class Medicos extends javax.swing.JFrame {
        
        String areaEspecialidade = jTextArea1.getText();
        
-       boolean cirurgiaoSelecionado = jRadioButton1.isSelected();
-       boolean outroRadioButtonSelecionado = jRadioButton2.isSelected();
-       
-       boolean selectedRadio1 = false;
-       boolean selectedRadio2 = false;
        
        String setor = jTextField2.getText();
        String chsemanal = jTextField3.getText();
@@ -279,6 +274,12 @@ public class Medicos extends javax.swing.JFrame {
        } else if ("Feminino".equals(generoSelecionado)) {
             opGenero = Genero.F;
        }
+       
+       boolean cirurgiaoSelecionado = jRadioButton1.isSelected();
+       boolean outroRadioButtonSelecionado = jRadioButton2.isSelected();
+       
+       boolean selectedRadio1;
+       boolean selectedRadio2;
        
        
        int chSemanalI = Integer.parseInt(chsemanal);

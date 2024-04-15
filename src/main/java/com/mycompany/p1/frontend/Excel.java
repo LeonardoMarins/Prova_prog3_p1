@@ -4,13 +4,26 @@
  */
 package com.mycompany.p1.frontend;
 
+import com.mycompany.p1.backend.ContatoTelEmail;
+import com.mycompany.p1.backend.DadoPessoal;
+import com.mycompany.p1.backend.Endereco;
+import com.mycompany.p1.backend.Genero;
 import com.mycompany.p1.backend.MenuBack;
+import com.mycompany.p1.backend.Paciente;
+import com.mycompany.p1.backend.Responsavel;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -95,7 +108,11 @@ public class Excel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("importando...");
+        try {
+            importarExcel();
+        } catch (IOException ex) {
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -144,7 +161,7 @@ public class Excel extends javax.swing.JFrame {
             exportarPaciente(workbook);
             exportarMedico(workbook);
             exportarEnfermeiro(workbook);
-            //exportConsultasMedicas(workbook);
+            exportarConsulta(workbook);
 
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
                 workbook.write(fileOut);
@@ -152,33 +169,45 @@ public class Excel extends javax.swing.JFrame {
         }
     }
      public void exportarPaciente(Workbook workbook) throws IOException {
-         // Caminho para o diretório de downloads do usuário
+         
         String userHome = System.getProperty("user.home");
         String downloadsPath = userHome + "/Downloads/";
-    
-        // Caminho completo para o arquivo Excel
+        
         String filePath = downloadsPath + name + ".xlsx";
     
         Sheet sheet = workbook.createSheet("paciente");
         
-        // Criar a linha de título com os dois títulos lado a lado
         Row titleRow = sheet.createRow(0);
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("NOME");
         Cell titleCell2 = titleRow.createCell(2);
         titleCell2.setCellValue("DATA NASCIMENTO");
-        Cell titleCell3 = titleRow.createCell(4);
-        titleCell3.setCellValue("ENDEREÇO");
-        Cell titleCell4 = titleRow.createCell(6);
-        titleCell4.setCellValue("CONTATO");
-        Cell titleCell5 = titleRow.createCell(8);
+        Cell titleCell5 = titleRow.createCell(4);
         titleCell5.setCellValue("IDADE");
-        Cell titleCell6 = titleRow.createCell(10);
+        Cell titleCell6 = titleRow.createCell(6);
         titleCell6.setCellValue("DATA CADASTRO");
-        Cell titleCell7 = titleRow.createCell(12);
+        Cell titleCell7 = titleRow.createCell(8);
         titleCell7.setCellValue("OBS GERAL");
-        Cell titleCell8 = titleRow.createCell(14);
+        Cell titleCell8 = titleRow.createCell(10);
         titleCell8.setCellValue("RESPONSAVEL");
+        Cell titleCell9 = titleRow.createCell(12);
+        titleCell9.setCellValue("RUA");
+        Cell titleCell10 = titleRow.createCell(14);
+        titleCell10.setCellValue("NUMERO");
+        Cell titleCell11 = titleRow.createCell(16);
+        titleCell11.setCellValue("ESTADO");
+        Cell titleCell12 = titleRow.createCell(18);
+        titleCell12.setCellValue("CIDADE");
+        Cell titleCell13 = titleRow.createCell(20);
+        titleCell13.setCellValue("CEP");
+        Cell titleCell14 = titleRow.createCell(22);
+        titleCell14.setCellValue("BAIRRO");
+        Cell titleCell15 = titleRow.createCell(24);
+        titleCell15.setCellValue("CELULAR");
+        Cell titleCell16 = titleRow.createCell(26);
+        titleCell16.setCellValue("TELEFONE");
+        Cell titleCell17 = titleRow.createCell(28);
+        titleCell17.setCellValue("EMAIL");
 
         int tamanho = menu.listaDePaciente.size();
         for (int i = 0; i < tamanho; i++) {
@@ -187,18 +216,32 @@ public class Excel extends javax.swing.JFrame {
             cell1.setCellValue(menu.listaDePaciente.get(i).getNomePessoal());
             Cell cell2 = row.createCell(2); 
             cell2.setCellValue(menu.listaDePaciente.get(i).getDataNascimento().toString());
-            Cell cell3 = row.createCell(4);
-            cell3.setCellValue(menu.listaDePaciente.get(i).getEndereco().getRua());
-            Cell cell4 = row.createCell(6); 
-            cell4.setCellValue(menu.listaDePaciente.get(i).getContato().getCelular());
-            Cell cell5 = row.createCell(8); 
+            Cell cell5 = row.createCell(4); 
             cell5.setCellValue(menu.listaDePaciente.get(i).getIdade());
-            Cell cell6 = row.createCell(10); 
+            Cell cell6 = row.createCell(6); 
             cell6.setCellValue(menu.listaDePaciente.get(i).getDataCadastro());
-            Cell cell7 = row.createCell(12); 
+            Cell cell7 = row.createCell(8); 
             cell7.setCellValue(menu.listaDePaciente.get(i).getObsGeral());
-            Cell cell8 = row.createCell(14); 
+            Cell cell8 = row.createCell(10); 
             cell8.setCellValue(menu.listaDePaciente.get(i).getContatoResponsavel().getNomeResponsavel());
+            Cell cell9 = row.createCell(12);
+            cell9.setCellValue(menu.listaDePaciente.get(i).getEndereco().getRua());
+            Cell cell10 = row.createCell(14);
+            cell10.setCellValue(menu.listaDePaciente.get(i).getEndereco().getNumero());
+            Cell cell11 = row.createCell(16);
+            cell11.setCellValue(menu.listaDePaciente.get(i).getEndereco().getEstado());
+            Cell cell12 = row.createCell(18);
+            cell12.setCellValue(menu.listaDePaciente.get(i).getEndereco().getCidade());
+            Cell cell13 = row.createCell(20);
+            cell13.setCellValue(menu.listaDePaciente.get(i).getEndereco().getCep());
+            Cell cell14 = row.createCell(22);
+            cell14.setCellValue(menu.listaDePaciente.get(i).getEndereco().getBairro());
+            Cell cell15 = row.createCell(24); 
+            cell15.setCellValue(menu.listaDePaciente.get(i).getContato().getCelular());
+            Cell cell16 = row.createCell(26); 
+            cell16.setCellValue(menu.listaDePaciente.get(i).getContato().getTelefone());
+            Cell cell17 = row.createCell(28); 
+            cell17.setCellValue(menu.listaDePaciente.get(i).getContato().getEmail());
         
         
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
@@ -208,16 +251,16 @@ public class Excel extends javax.swing.JFrame {
 }
      
      public void exportarMedico(Workbook workbook) throws IOException {
-         // Caminho para o diretório de downloads do usuário
+         
         String userHome = System.getProperty("user.home");
         String downloadsPath = userHome + "/Downloads/";
     
-        // Caminho completo para o arquivo Excel
+        
         String filePath = downloadsPath + name + ".xlsx";
 
         Sheet sheet = workbook.createSheet("Medico");
         
-        // Criar a linha de título com os dois títulos lado a lado
+        
         Row titleRow = sheet.createRow(0);
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("NUMERO CRM");
@@ -270,53 +313,81 @@ public class Excel extends javax.swing.JFrame {
     }
 }
       public void exportarEnfermeiro(Workbook workbook) throws IOException {
-         // Caminho para o diretório de downloads do usuário
+        
         String userHome = System.getProperty("user.home");
         String downloadsPath = userHome + "/Downloads/";
     
-        // Caminho completo para o arquivo Excel
+        
         String filePath = downloadsPath + name + ".xlsx";
 
         Sheet sheet = workbook.createSheet("Enfermeiro");
         
-        // Criar a linha de título com os dois títulos lado a lado
+        
         Row titleRow = sheet.createRow(0);
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("NOME");
         Cell titleCell2 = titleRow.createCell(2);
         titleCell2.setCellValue("DATA NASCIMENTO");
         Cell titleCell3 = titleRow.createCell(4);
-        titleCell3.setCellValue("ENDEREÇO");
+        titleCell3.setCellValue("GENERO");
         Cell titleCell4 = titleRow.createCell(6);
-        titleCell4.setCellValue("CONTATO");
+        titleCell4.setCellValue("SETOR");
         Cell titleCell5 = titleRow.createCell(8);
-        titleCell5.setCellValue("GENERO");
+        titleCell5.setCellValue("CHSEMANAL");
         Cell titleCell6 = titleRow.createCell(10);
-        titleCell6.setCellValue("SETOR");
-        Cell titleCell7 = titleRow.createCell(12);
-        titleCell7.setCellValue("CHSEMANAL");
-        Cell titleCell8 = titleRow.createCell(14);
-        titleCell8.setCellValue("TREINADO_OPRX");
+        titleCell6.setCellValue("TREINADO_OPRX");
+        Cell titleCell9 = titleRow.createCell(12);
+        titleCell9.setCellValue("RUA");
+        Cell titleCell10 = titleRow.createCell(14);
+        titleCell10.setCellValue("NUMERO");
+        Cell titleCell11 = titleRow.createCell(16);
+        titleCell11.setCellValue("ESTADO");
+        Cell titleCell12 = titleRow.createCell(18);
+        titleCell12.setCellValue("CIDADE");
+        Cell titleCell13 = titleRow.createCell(20);
+        titleCell13.setCellValue("CEP");
+        Cell titleCell14 = titleRow.createCell(22);
+        titleCell14.setCellValue("BAIRRO");
+        Cell titleCell15 = titleRow.createCell(24);
+        titleCell15.setCellValue("CELULAR");
+        Cell titleCell16 = titleRow.createCell(26);
+        titleCell16.setCellValue("TELEFONE");
+        Cell titleCell17 = titleRow.createCell(28);
+        titleCell17.setCellValue("EMAIL");
 
         int tamanho = menu.listaDeEnfermeiros.size();
         for (int i = 0; i < tamanho; i++) {
             Row row = sheet.createRow(i + 1); 
             Cell cell1 = row.createCell(0);
             cell1.setCellValue(menu.listaDeEnfermeiros.get(i).getNomePessoal());
-            Cell cell3 = row.createCell(2);
-            cell3.setCellValue(menu.listaDeEnfermeiros.get(i).getDataNascimento().toString());
-            Cell cell4 = row.createCell(4); 
-            cell4.setCellValue(menu.listaDeEnfermeiros.get(i).getEndereco().getRua());
-            Cell cell5 = row.createCell(6); 
-            cell5.setCellValue(menu.listaDeEnfermeiros.get(i).getContato().getCelular());
-            Cell cell7 = row.createCell(8); 
-            cell7.setCellValue(menu.listaDeEnfermeiros.get(i).getGenero().name());
-            Cell cell8 = row.createCell(10); 
-            cell8.setCellValue(menu.listaDeEnfermeiros.get(i).getSetor());
-            Cell cell9 = row.createCell(12); 
-            cell9.setCellValue(menu.listaDeEnfermeiros.get(i).getChSemanal());
-            Cell cell10 = row.createCell(14); 
-            cell10.setCellValue((boolean) menu.listaDeEnfermeiros.get(i).isTreinadoOpRX());
+            Cell cell2 = row.createCell(2);
+            cell2.setCellValue(menu.listaDeEnfermeiros.get(i).getDataNascimento().toString());
+            Cell cell3 = row.createCell(4); 
+            cell3.setCellValue(menu.listaDeEnfermeiros.get(i).getGenero().name());
+            Cell cell4 = row.createCell(6); 
+            cell4.setCellValue(menu.listaDeEnfermeiros.get(i).getSetor());
+            Cell cell5 = row.createCell(8); 
+            cell5.setCellValue(menu.listaDeEnfermeiros.get(i).getChSemanal());
+            Cell cell6 = row.createCell(10); 
+            cell6.setCellValue((boolean) menu.listaDeEnfermeiros.get(i).isTreinadoOpRX());
+            Cell cell9 = row.createCell(12);
+            cell9.setCellValue(menu.listaDePaciente.get(i).getEndereco().getRua());
+            Cell cell10 = row.createCell(14);
+            cell10.setCellValue(menu.listaDePaciente.get(i).getEndereco().getNumero());
+            Cell cell11 = row.createCell(16);
+            cell11.setCellValue(menu.listaDePaciente.get(i).getEndereco().getEstado());
+            Cell cell12 = row.createCell(18);
+            cell12.setCellValue(menu.listaDePaciente.get(i).getEndereco().getCidade());
+            Cell cell13 = row.createCell(20);
+            cell13.setCellValue(menu.listaDePaciente.get(i).getEndereco().getCep());
+            Cell cell14 = row.createCell(22);
+            cell14.setCellValue(menu.listaDePaciente.get(i).getEndereco().getBairro());
+            Cell cell15 = row.createCell(24); 
+            cell15.setCellValue(menu.listaDePaciente.get(i).getContato().getCelular());
+            Cell cell16 = row.createCell(26); 
+            cell16.setCellValue(menu.listaDePaciente.get(i).getContato().getTelefone());
+            Cell cell17 = row.createCell(28); 
+            cell17.setCellValue(menu.listaDePaciente.get(i).getContato().getEmail());
         
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);
@@ -324,16 +395,16 @@ public class Excel extends javax.swing.JFrame {
     }
 }
       public void exportarConsulta(Workbook workbook) throws IOException {
-         // Caminho para o diretório de downloads do usuário
+         
         String userHome = System.getProperty("user.home");
         String downloadsPath = userHome + "/Downloads/";
     
-        // Caminho completo para o arquivo Excel
+        
         String filePath = downloadsPath + name + ".xlsx";
 
         Sheet sheet = workbook.createSheet("Consulta Medica");
         
-        // Criar a linha de título com os dois títulos lado a lado
+        
         Row titleRow = sheet.createRow(0);
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("ID PACIENTE");
@@ -371,6 +442,93 @@ public class Excel extends javax.swing.JFrame {
         }
     }
 }
+      public void importarExcel() throws IOException {
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Selecione o arquivo Excel");
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos Excel (*.xlsx)", "xlsx"));
+
+    int result = fileChooser.showOpenDialog(null);
+    if (result == JFileChooser.APPROVE_OPTION) {
+        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            
+            Sheet sheet = workbook.getSheet("paciente");
+            if (sheet != null) {
+                
+                for (Row row : sheet) {
+                    
+                    String nomePessoal = row.getCell(0).getStringCellValue();
+                   String dataNascimentoStr = row.getCell(2).getStringCellValue();
+                   Date dataNascimento = null;
+                    Cell dataNascimentoCell = row.getCell(2);
+            if (dataNascimentoCell != null && dataNascimentoCell.getCellType() == CellType.STRING) {
+                    dataNascimentoStr = dataNascimentoCell.getStringCellValue();
+            if (!dataNascimentoStr.isEmpty()) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    dataNascimento = sdf.parse(dataNascimentoStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+            }
+        }
+    }
+                    String obsGeral = row.getCell(8).getStringCellValue();
+                    String nomeResponsavel = row.getCell(10).getStringCellValue();
+                    String rua = row.getCell(12).getStringCellValue();
+                    String numero = row.getCell(14).getStringCellValue();
+                    Cell numeroCell = row.getCell(14);
+                    int numeroI = 0;
+            if (numeroCell != null && numeroCell.getCellType() == CellType.STRING) {
+                String numeroStr = numeroCell.getStringCellValue();
+            if (!numeroStr.isEmpty()) {
+                try {
+                    numeroI = Integer.parseInt(numeroStr);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+            }
+        }
+    }
+                    
+                    String idade = row.getCell(4).getStringCellValue();
+                    int idadeI = Integer.parseInt(idade);
+                    String estado = row.getCell(16).getStringCellValue();
+                    String cidade = row.getCell(18).getStringCellValue();
+                    String cep = row.getCell(20).getStringCellValue();
+                    int cepI = Integer.parseInt(cep);
+                    String bairro = row.getCell(22).getStringCellValue();
+                    String celular = row.getCell(24).getStringCellValue();
+                    Long celularI = Long.valueOf(celular);
+                    String telefone = row.getCell(26).getStringCellValue();
+                    Long telefoneI = Long.valueOf(telefone);
+                    String email = row.getCell(28).getStringCellValue();
+                    
+                    Endereco end = new Endereco(rua, numeroI, bairro, cidade, estado, cepI);
+                    ContatoTelEmail cont = new ContatoTelEmail(telefoneI, celularI, email);
+                    
+                    Date dataAtual = new Date();
+                    String dataCadastro = dataAtual.toGMTString();
+                    
+                    DadoPessoal dado = new DadoPessoal(nomePessoal, dataNascimento, end, cont, Genero.M);
+                    
+                    Responsavel respo = new Responsavel(nomeResponsavel, cont);
+
+                    // Crie um novo objeto Paciente com os dados
+                    Paciente paciente = new Paciente(dado,idadeI,dataCadastro, respo, "");
+
+                    // Adicione o paciente à lista de pacientes
+                    menu.listaDePaciente.add(paciente);
+                }
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "A aba 'paciente' não foi encontrada no arquivo Excel.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+}
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
