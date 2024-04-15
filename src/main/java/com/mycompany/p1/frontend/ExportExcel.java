@@ -156,7 +156,7 @@ public class ExportExcel extends javax.swing.JFrame {
         Row titleRow = sheet.createRow(0);
         Cell titleCell1 = titleRow.createCell(0);
         titleCell1.setCellValue("NOME");
-        Cell titleCell2 = titleRow.createCell(1);
+        Cell titleCell2 = titleRow.createCell(2);
         titleCell2.setCellValue("DATA NASCIMENTO");
         Cell titleCell3 = titleRow.createCell(4);
         titleCell3.setCellValue("ENDEREÇO");
@@ -308,6 +308,54 @@ public class ExportExcel extends javax.swing.JFrame {
             cell9.setCellValue(menu.listaDeEnfermeiros.get(i).getChSemanal());
             Cell cell10 = row.createCell(14); 
             cell10.setCellValue((boolean) menu.listaDeEnfermeiros.get(i).isTreinadoOpRX());
+        
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+        }
+    }
+}
+      public void exportarConsulta(Workbook workbook) throws IOException {
+         // Caminho para o diretório de downloads do usuário
+        String userHome = System.getProperty("user.home");
+        String downloadsPath = userHome + "/Downloads/";
+    
+        // Caminho completo para o arquivo Excel
+        String filePath = downloadsPath + name + ".xlsx";
+
+        Sheet sheet = workbook.createSheet("Consulta Medica");
+        
+        // Criar a linha de título com os dois títulos lado a lado
+        Row titleRow = sheet.createRow(0);
+        Cell titleCell1 = titleRow.createCell(0);
+        titleCell1.setCellValue("ID PACIENTE");
+        Cell titleCell2 = titleRow.createCell(2);
+        titleCell2.setCellValue("ID MEDICO");
+        Cell titleCell3 = titleRow.createCell(4);
+        titleCell3.setCellValue("EXAME QUEIXA");
+        Cell titleCell4 = titleRow.createCell(6);
+        titleCell4.setCellValue("DIAGNOSTICO");
+        Cell titleCell5 = titleRow.createCell(8);
+        titleCell5.setCellValue("PRESCRIÇÃO");
+        Cell titleCell6 = titleRow.createCell(10);
+        titleCell6.setCellValue("INDICAÇÃO CIRURGICA");
+        
+
+        int tamanho = menu.listaDeConsultaMedica.size();
+        for (int i = 0; i < tamanho; i++) {
+            Row row = sheet.createRow(i + 1); 
+            Cell cell1 = row.createCell(0);
+            cell1.setCellValue(menu.listaDeConsultaMedica.get(i).getIdPaciente().toString());
+            Cell cell3 = row.createCell(2);
+            cell3.setCellValue(menu.listaDeConsultaMedica.get(i).getIdMedico().toString());
+            Cell cell4 = row.createCell(4); 
+            cell4.setCellValue(menu.listaDeConsultaMedica.get(i).getExameQueixa());
+            Cell cell5 = row.createCell(6); 
+            cell5.setCellValue(menu.listaDeConsultaMedica.get(i).getDiagnostico());
+            Cell cell7 = row.createCell(8); 
+            cell7.setCellValue(menu.listaDeConsultaMedica.get(i).getPrescricao());
+            Cell cell8 = row.createCell(10); 
+            cell8.setCellValue((boolean)menu.listaDeConsultaMedica.get(i).isIndicacaoCirurgica());
+
         
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);
