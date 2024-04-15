@@ -20,14 +20,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author marin
  */
-public class ExportExcel extends javax.swing.JFrame {
+public class Excel extends javax.swing.JFrame {
 
     /**
      * Creates new form ExportExcel
      */
     private MenuBack menu;
     String name;
-    public ExportExcel(MenuBack menu) {
+    public Excel(MenuBack menu) {
         initComponents();
         this.menu = menu;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,6 +55,11 @@ public class ExportExcel extends javax.swing.JFrame {
         });
 
         jButton2.setText("IMPORTAR EXCEL");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +90,13 @@ public class ExportExcel extends javax.swing.JFrame {
         try {
             exportaExcel(name);
         } catch (IOException ex) {
-            Logger.getLogger(ExportExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.out.println("importando...");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,13 +115,13 @@ public class ExportExcel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExportExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Excel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExportExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Excel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExportExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Excel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExportExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Excel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         MenuBack menu = new MenuBack();
@@ -120,7 +129,7 @@ public class ExportExcel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExportExcel(menu).setVisible(true);
+                new Excel(menu).setVisible(true);
             }
         });
     }

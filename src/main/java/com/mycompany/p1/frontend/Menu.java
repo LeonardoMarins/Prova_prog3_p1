@@ -319,7 +319,7 @@ public final class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        new ExportExcel(menu).setVisible(true);
+        new Excel(menu).setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
