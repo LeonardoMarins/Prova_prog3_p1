@@ -14,8 +14,6 @@ import com.mycompany.p1.backend.Responsavel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -286,7 +284,7 @@ public class Pacientes extends javax.swing.JFrame {
             this.dispose();
 
         }catch (ParseException ex) {
-            JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+            JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia exemplo: 12/09/1998");
         }catch(IndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "O contatoTelEmail, endereço e responsavel devem ser cadastrado antes "
                     + "em cadastros basicos para conseguir cadastrar um paciente");

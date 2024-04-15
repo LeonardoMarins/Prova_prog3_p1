@@ -273,7 +273,7 @@ public class Enfermeiros extends javax.swing.JFrame {
             System.out.println(enfermeiro.getGenero());
         }
        }catch(ParseException ex) {
-           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia exemplo: 12/09/1998");
        }catch(NumberFormatException exs) {
            JOptionPane.showMessageDialog(rootPane, "o chSemanal não podem ser vazios"
                    + " para o cadastro do enfermeiro");

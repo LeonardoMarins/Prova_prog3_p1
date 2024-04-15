@@ -311,7 +311,7 @@ public class Medicos extends javax.swing.JFrame {
             System.out.println(medico.getIdMedico());
         }
        }catch(ParseException ex) {
-           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia");
+           JOptionPane.showMessageDialog(rootPane, "A data de nascimento não pode ser vazia exemplo: 12/09/1998");
        }catch(NumberFormatException exs) {
            JOptionPane.showMessageDialog(rootPane, "o numero de CRM e o chSemanal não podem ser vazios"
                    + " para o cadastro do medico e não devem conter letras");

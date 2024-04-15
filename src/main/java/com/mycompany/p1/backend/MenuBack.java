@@ -20,6 +20,7 @@ public class MenuBack {
     public ArrayList<Medico> listaDeMedicos = new ArrayList<>();
     public ArrayList<Enfermeiro> listaDeEnfermeiros = new ArrayList<>();
     public ArrayList<ConsultaMedica> listaDeConsultaMedica = new ArrayList<>();
+    
      
     public void adicionarEndereco(Endereco endereco) {
     listaEndereco.add(endereco);
