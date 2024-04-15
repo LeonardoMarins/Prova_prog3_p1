@@ -86,6 +86,7 @@ public class ListarConsulta extends javax.swing.JFrame {
         for (ConsultaMedica consulta : listaConsultas) {
             if (consulta.getExameQueixa().toLowerCase().contains(termo)) {
                 model.addRow(new Object[]{
+                    consulta.getIdConsulta(),
                     consulta.getIdPaciente(),
                     consulta.getIdMedico(),
                     consulta.getExameQueixa(),
