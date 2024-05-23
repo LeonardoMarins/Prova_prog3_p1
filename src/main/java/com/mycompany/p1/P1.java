@@ -4,6 +4,8 @@
 
 package com.mycompany.p1;
 
+import com.mycompany.p1.frontend.Menu;
+
 /**
  *
  * @author marin
@@ -11,6 +13,6 @@ package com.mycompany.p1;
 public class P1 {
 
     public static void main(String[] args) {
-        
+        new Menu().setVisible(true); 
     }
 }
