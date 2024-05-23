@@ -20,16 +20,14 @@ public class Paciente extends DadoPessoal {
     private ConsultaMedica historicoConsultaMedica;
     private Responsavel contatoResponsavel;
     
-    public Paciente(DadoPessoal pessoal, int idade, String dataCadastro, Responsavel responsavel, String obsGeral) {
+    
+    public Paciente(DadoPessoal pessoal, int idade, String dataCadastro, String obsGeral) {
         super(pessoal.nomePessoal,pessoal.dataNascimento,pessoal.endereco,pessoal.contato,pessoal.genero);
         this.idade = idade;
         this.dataCadastro = dataCadastro;
-        this.contatoResponsavel = responsavel;
         this.obsGeral = obsGeral;
         this.idPaciente = UUID.randomUUID();
     }
-    
-
 
     /**
      * @return the idPaciente

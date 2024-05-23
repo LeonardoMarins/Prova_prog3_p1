@@ -513,10 +513,11 @@ public class Excel extends javax.swing.JFrame {
                     
                     DadoPessoal dado = new DadoPessoal(nomePessoal, dataNascimento, end, cont, Genero.M);
                     
-                    Responsavel respo = new Responsavel(nomeResponsavel, cont);
+                    Paciente paciente = new Paciente(dado,idadeI,dataCadastro, "");
+                    
+                    Responsavel respo = new Responsavel(nomeResponsavel, cont , paciente);
 
                     // Crie um novo objeto Paciente com os dados
-                    Paciente paciente = new Paciente(dado,idadeI,dataCadastro, respo, "");
 
                     // Adicione o paciente à lista de pacientes
                     menu.listaDePaciente.add(paciente);

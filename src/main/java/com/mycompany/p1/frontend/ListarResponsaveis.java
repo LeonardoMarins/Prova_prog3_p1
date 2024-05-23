@@ -31,6 +31,7 @@ public class ListarResponsaveis extends javax.swing.JFrame {
             responsavel.getTelefone(),
             responsavel.getCelular(),
             responsavel.getEmail(),
+            responsavel.getPaciente().getNomePessoal()
         });
         linha++; // Incrementa a linha
     }
@@ -55,7 +56,7 @@ public class ListarResponsaveis extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "TELEFONE", "CELULAR", "EMAL"
+                "NOME", "TELEFONE", "CELULAR", "EMAL", "RESPONSAVEL"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

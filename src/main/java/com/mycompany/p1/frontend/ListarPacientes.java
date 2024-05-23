@@ -39,7 +39,6 @@ public class ListarPacientes extends javax.swing.JFrame {
             paciente.getIdPaciente(),
             paciente.getNomePessoal(),
             paciente.getContato().getTelefone(),
-            paciente.getContatoResponsavel().getNomeResponsavel(),
             paciente.getDataCadastro(),
             paciente.getDataNascimento(),
             paciente.getEndereco().getRua(),
@@ -126,7 +125,7 @@ public class ListarPacientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "CONTATO", "CONTATO RESPONSAVEL", "DATA CADASTRO", "DATA NASCIMENTO", "ENDEREÇO", "GENERO", "IDADE", "OBS GERAL", "EDIT", "DELETE"
+                "ID", "NOME", "CONTATO", "DATA CADASTRO", "DATA NASCIMENTO", "ENDEREÇO", "GENERO", "IDADE", "OBS GERAL", "EDIT", "DELETE"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
