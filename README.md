@@ -33,4 +33,10 @@ mantendo listas adequadas para cada categoria cadastrada em memória RAM (ArrayL
 misturar as categorias no filtro de informações para tal, criando assim telas cadastrais específicas.
 II) cadastrar / consultar / editar / remover “consultas médicas”, tal como no item anterior. 
 
+# Rodando a aplicação:
+
+Rodando a classe main temos o menu inicial:
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/06f9b4d8-dcdf-40da-81cb-ff196d17a90f)
+
 
