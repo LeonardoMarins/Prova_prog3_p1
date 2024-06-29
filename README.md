@@ -59,4 +59,12 @@ II) cadastrar / consultar / editar / remover “consultas médicas”, tal como 
 
 ![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/bfc906bc-701e-4bae-8d6d-d1ba93ee81af)
 
+* **Exportando para excel**:
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/52ea72dd-f526-42be-8dc9-2d1e6563190e)
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/5a1552fe-7f8d-4fb7-9099-96b6d0fa8c89)
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/4fd4af28-c6ab-47af-ac96-349c77fc7d64)
+
 
