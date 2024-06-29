@@ -39,4 +39,9 @@ Rodando a classe main temos o menu inicial:
 
 ![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/06f9b4d8-dcdf-40da-81cb-ff196d17a90f)
 
+- Na primeira seção, temos os cadastros básicos, ou seja, os dados cadastrados ali são usados no cadastro específico.
+
+Cadastro e listagem de endereço: 
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/926b962e-1a31-4902-9eb1-9f137e2d0ddd)
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/de3da49e-0415-4f03-865b-8c04bbeff646)
 
