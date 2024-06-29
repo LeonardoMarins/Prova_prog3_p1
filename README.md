@@ -41,11 +41,22 @@ II) cadastrar / consultar / editar / remover “consultas médicas”, tal como 
 
 * Na primeira seção, temos os cadastros básicos, ou seja, os dados cadastrados são usados no cadastro específico.
 
--> **Cadastro de endereço**:
+=> **Cadastro de endereço**:
   
 ![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/926b962e-1a31-4902-9eb1-9f137e2d0ddd)
 
--> **Listagem de endereços**:
+=> **Listagem de endereços**:
   
 ![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/de3da49e-0415-4f03-865b-8c04bbeff646)
+
+* Na segunda seção, temos os cadastros específico, ou seja, são os cadastros de medicos, paciente, enfermeiro e consultas e são usados para exportar em excel.
+
+=> **Cadastro de paciente**:
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/ee1531bd-6ac1-406c-a63f-ce074810d41b)
+
+=> **Listagem de paciente**:
+
+![image](https://github.com/LeonardoMarins/Prova_prog3_p1/assets/109676300/bfc906bc-701e-4bae-8d6d-d1ba93ee81af)
+
 
